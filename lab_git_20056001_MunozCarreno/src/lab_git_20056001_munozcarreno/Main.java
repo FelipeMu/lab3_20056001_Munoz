@@ -1,6 +1,7 @@
 
 package lab_git_20056001_munozcarreno;
 
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 
@@ -21,11 +22,15 @@ public class Main {
        System.out.println();
        System.out.printf("Ingrese nombre del autor: ");
        autor = S.nextLine();
+       System.out.println();
        ZonasDeTrabajo Zonas = new ZonasDeTrabajo(nombreRep,autor);
+       
+       
        
        //SE PROCEDE A MOSTRAR EL MENU A TRAVÉS DE UN BUCLE
        int opcion=0;
        do{
+           
            System.out.println("###SIMULACIÓN DE GIT###");
            System.out.println("Escoja una opcion: ");
            System.out.println("1. add");
@@ -37,48 +42,67 @@ public class Main {
            System.out.println("7. Crear nuevo archivo");
            System.out.println("8. salir");
            System.out.println("INTRODUZCA SU OPCION: ");
-       }while(opcion!=8);
-       
-       //SE PROCEDE A REVISAR LA OPCIÓN ESCOGIDA A TRAVÉS DE UN SWITCH
-       
-       switch(opcion){
-           case 1: 
+         
+           
+           //CON LA INSTRUCCION TRY CATCH GENERAMOS UN CONTROL DE ERRORES DE LAS
+           //POSIBLES ENTRADAS QUE INGRESA EL USUARIO, YA SEA, NÚMEROS NO
+           //DISPONIBLES Y UN DATO DISTINTO AL TIPO "ENTERO".
+           try{
                
-               break;
-               
-           case 2:
-               
-               break;
+               opcion = S.nextInt();
+               if(opcion < 1 || opcion > 8){
+                   System.out.println(" ! Error, introduzca una opción válida.\n");
+                }
+           } catch(InputMismatchException e){
+               System.out.println("! Error, introduzca una opción válida.\n");
+               S.next();
               
-           case 3:
-               
-               break;  
+           }
+           
+           //SE PROCEDE A REVISAR LA OPCIÓN ESCOGIDA A TRAVÉS DE UN SWITCH
        
-           case 4:
-               
-               break;   
-       
-           case 5:
-               
-               break;
-       
-           case 6:
-               
-               break;
-       
-           case 7:
-               
-               
-               break;
-       
-           case 8:
-               System.out.println();
-               System.out.println("Hasta luego.");
-               break;
-              
-           default:
-               System.out.println();
-               System.out.println("Error, introduzca una opcion valida");     
-       } 
+            switch(opcion){
+                case 1: 
+
+                    break;
+
+                case 2:
+
+                    break;
+
+                case 3:
+
+                    break;  
+
+                case 4:
+
+                    break;   
+
+                case 5:
+
+                    break;
+
+                case 6:
+
+                    break;
+
+                case 7:
+                    ZonasDeTrabajo ZonasNueva = Git.AgregarArchivo(Zonas);
+                    System.out.println(ZonasNueva.toString());
+                    System.out.println();
+
+
+                    break;
+
+                case 8:
+                    System.out.println();
+                    System.out.println("Hasta luego.\n");
+                    break;     
+            } 
+            // SE VERIFICA SI EL USUARIO DECIDIÓ SALIR DEL SIMULADOR
+            if(opcion != 8){
+                opcion=0;
+            }
+       }while(opcion < 1 || opcion > 8);
     }
 }

@@ -6,7 +6,7 @@ import java.util.ArrayList;
 
 public class Index {
     //atributos u objetos
-    private ArrayList<ArchTextoPlano> index;
+    private ArrayList<ArchTextoPlano> Archivos_Index;
     
     
     /**
@@ -14,7 +14,7 @@ public class Index {
      */
     public Index() {
         //SE INICIALIZA LA ZONA INDEX COMO UNA LISTA VACÍA
-        index = new ArrayList<>();
+        Archivos_Index = new ArrayList<>();
     }
     
     
@@ -26,20 +26,20 @@ public class Index {
      * SELECTOR DE ZONA INDEX
      * @return ArrayList
      */
-    public ArrayList<ArchTextoPlano> getIndex() {
-        return index;
+    public ArrayList<ArchTextoPlano> getArchivos_Index() {
+        return Archivos_Index;
     }
     /**
      * MODIFICADOR DE ZONA INDEX
      * @param index 
      */
-    public void setIndex(ArrayList<ArchTextoPlano> index) {
-        this.index = index;
+    public void setArchivos_Index(ArrayList<ArchTextoPlano> index) {
+        this.Archivos_Index = index;
     }
 
     @Override
     public String toString() {
-        return "Index{" + "index=" + index + '}';
+        return "[" + Archivos_Index + ']';
     }
     
     

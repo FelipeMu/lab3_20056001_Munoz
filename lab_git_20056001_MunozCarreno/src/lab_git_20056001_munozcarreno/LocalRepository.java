@@ -6,13 +6,13 @@ import java.util.ArrayList;
 
 public class LocalRepository {
     //atributos u objetos
-    private ArrayList<Commit> localRepository; 
+    private ArrayList<Commit> CommitsEnLocal; 
     
     /**
      * CONSTRUCTOR
      */
     public LocalRepository() {
-        this.localRepository = new ArrayList<>();
+        this.CommitsEnLocal = new ArrayList<>();
     }
 
     //GETTERS Y SETTERS
@@ -21,16 +21,21 @@ public class LocalRepository {
      * SELECTOR
      * @return ArrayList
      */
-    public ArrayList<Commit> getLocalRepository() {
-        return localRepository;
+    public ArrayList<Commit> getCommitsEnLocal() {
+        return CommitsEnLocal;
     }
 
     /**
      * MODIFICADOR
      * @param localRepository 
      */
-    public void setLocalRepository(ArrayList<Commit> localRepository) {
-        this.localRepository = localRepository;
+    public void setCommitsEnLocal(ArrayList<Commit> localRepository) {
+        this.CommitsEnLocal = localRepository;
+    }
+
+    @Override
+    public String toString() {
+        return "[" + CommitsEnLocal + ']';
     }
     
     

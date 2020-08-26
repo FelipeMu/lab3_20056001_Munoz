@@ -6,13 +6,13 @@ import java.util.ArrayList;
 
 public class RemoteRepository {
     //atributos u objetos
-    private ArrayList<Commit> archivosCommit;
+    private ArrayList<Commit> CommitsEnRemote;
 
     /**
      * CONSTRUCTOR
      */
     public RemoteRepository() {
-        this.archivosCommit = new ArrayList<>();
+        this.CommitsEnRemote = new ArrayList<>();
     }
     
     //GETTERS Y SETTERS
@@ -21,16 +21,21 @@ public class RemoteRepository {
      * SELECTOR
      * @return ArrayList
      */
-    public ArrayList<Commit> getArchivosCommit() {
-        return archivosCommit;
+    public ArrayList<Commit> getCommitsEnRemote() {
+        return CommitsEnRemote;
     }
 
     /**
      * MODIFICADOR
      * @param archivosCommit 
      */
-    public void setArchivosCommit(ArrayList<Commit> archivosCommit) {
-        this.archivosCommit = archivosCommit;
+    public void setCommitsEnRemote(ArrayList<Commit> archivosCommit) {
+        this.CommitsEnRemote = archivosCommit;
+    }
+
+    @Override
+    public String toString() {
+        return "[" + CommitsEnRemote + ']';
     }
     
     

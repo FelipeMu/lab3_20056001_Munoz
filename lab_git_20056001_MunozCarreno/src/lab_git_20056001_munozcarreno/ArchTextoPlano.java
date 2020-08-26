@@ -6,21 +6,22 @@ package lab_git_20056001_munozcarreno;
 
 public class ArchTextoPlano {
     private String nombre;
-    private String fecha;
+    private String fechahora;
     private String contenido;
     
     /**
      * CONSTRUCTOR
      * @param nombre
      * @param contenido 
+     * @param fechahora 
      */
-    public ArchTextoPlano(String nombre,String contenido){
+    public ArchTextoPlano(String nombre,String contenido,String fechahora){
         //se inicializa el nombre del archivo
         this.nombre=nombre;
         //se inicializa el contenido del archivo
         this.contenido=contenido;
         //se procede a inicializar la fecha de modificación
-        this.fecha = MetodosExtras.obtenerFecha();
+        this.fechahora = fechahora;
     
     
     }
@@ -33,7 +34,7 @@ public class ArchTextoPlano {
     public void mostrarInformacion(){
         System.out.println("----informacion de archivo----");
         System.out.println("nombre archivo: "+getNombre());
-        System.out.println("fecha mofificacion: "+getFecha());
+        System.out.println("fecha mofificacion: "+getFechaHora());
         System.out.println("contenido archivo: "+getContenido());
         
     }
@@ -61,16 +62,16 @@ public class ArchTextoPlano {
      * SELECTOR
      * @return String
      */
-    public String getFecha() {
-        return fecha;
+    public String getFechaHora() {
+        return fechahora;
     }
 
     /**
      * MODIFICADOR
      * @param fecha 
      */
-    public void setFecha(String fecha) {
-        this.fecha = fecha;
+    public void setFechaHora(String fecha) {
+        this.fechahora = fecha;
     }
     
     /**
@@ -88,6 +89,13 @@ public class ArchTextoPlano {
     public void setContenido(String contenido) {
         this.contenido = contenido;
     }
+
+    @Override
+    public String toString() {
+        return "[" + nombre + ", " + fechahora + ", " + contenido + ']';
+    }
     
    
+    
+    
 }

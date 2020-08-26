@@ -20,10 +20,10 @@ public class ZonasDeTrabajo {
     public ZonasDeTrabajo(String nombreRep, String autor) {
         this.nombreRep = nombreRep;
         this.nombreAutor = autor;
-        workspace = new Workspace();
-        index = new Index();
-        localRepository = new LocalRepository();
-        remoteRepository = new RemoteRepository();
+        this.workspace = new Workspace();
+        this.index = new Index();
+        this.localRepository = new LocalRepository();
+        this.remoteRepository = new RemoteRepository();
     }
     
     //GETTERS Y SETTERS
@@ -126,11 +126,6 @@ public class ZonasDeTrabajo {
 
     @Override
     public String toString() {
-        return "ZonasDeTrabajo{" + "nombreRep=" + nombreRep + ", nombreAutor=" + nombreAutor + ", workspace=" + workspace + ", index=" + index + ", localRepository=" + localRepository + ", remoteRepository=" + remoteRepository + '}';
+        return "ZonasDeTrabajo[" + "nombreRep=" + nombreRep + ", nombreAutor=" + nombreAutor + ",\n workspace" + workspace + ",\n index" + index + ",\n localRepository" + localRepository + ",\n remoteRepository" + remoteRepository + ']';
     }
-    
-    
-    
-    
-    
 }

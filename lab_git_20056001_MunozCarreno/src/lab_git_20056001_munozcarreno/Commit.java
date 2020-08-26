@@ -74,6 +74,13 @@ public class Commit {
     public void setMensaje(String mensaje) {
         this.mensaje = mensaje;
     }
+
+    @Override
+    public String toString() {
+        return "Commit{" + "autor=" + autor + ", tiempo=" + tiempo + ", mensaje=" + mensaje + ", archivosCommit=" + archivosCommit + '}';
+    }
+    
+   
     
     
     
