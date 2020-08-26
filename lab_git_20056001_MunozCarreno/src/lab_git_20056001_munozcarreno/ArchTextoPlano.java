@@ -1,6 +1,8 @@
 
 package lab_git_20056001_munozcarreno;
 
+import java.util.ArrayList;
+
 
 
 
@@ -38,8 +40,19 @@ public class ArchTextoPlano {
         System.out.println("contenido archivo: "+getContenido());
         
     }
-        
-       
+     
+    public static void MostrarNombres(ArrayList<ArchTextoPlano> L){
+        int i=0;
+        //SE DEFINE UN OBJETO DE TIPO ArchTextoPlano
+        ArchTextoPlano archivo;
+        for(i=0;i<L.size();i++){
+            archivo=L.get(i);
+            System.out.printf("%d) %s\n",i+1,archivo.getNombre());
+        }
+    
+    }
+    
+ 
     //GETTERS Y SETTERS
     
     /**

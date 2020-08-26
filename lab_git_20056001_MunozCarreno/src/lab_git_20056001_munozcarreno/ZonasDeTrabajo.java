@@ -6,6 +6,7 @@ public class ZonasDeTrabajo {
     //se definen los atributos de la clase y los objetos (zonas de trabajo)
     String nombreRep;
     String nombreAutor;
+    String FechaCreacion;
     
     Workspace workspace;
     Index index;
@@ -16,10 +17,12 @@ public class ZonasDeTrabajo {
      * CONSTRUCTOR
      * @param nombreRep
      * @param autor 
+     * @param FechaHora 
      */
-    public ZonasDeTrabajo(String nombreRep, String autor) {
+    public ZonasDeTrabajo(String nombreRep, String autor, String FechaHora) {
         this.nombreRep = nombreRep;
         this.nombreAutor = autor;
+        this.FechaCreacion = MetodosExtras.obtenerFecha();
         this.workspace = new Workspace();
         this.index = new Index();
         this.localRepository = new LocalRepository();
@@ -60,6 +63,29 @@ public class ZonasDeTrabajo {
         this.nombreAutor = nombreAutor;
     }
 
+    /**
+     * SELECTOR
+     * @return  String
+     */
+    public String getFechaCreacion() {
+        return FechaCreacion;
+    }
+
+    /**
+     * MODIFICADOR
+     * @param FechaCreacion 
+     */
+    public void setFechaCreacion(String FechaCreacion) {
+        this.FechaCreacion = FechaCreacion;
+    }
+
+    
+    
+    
+    
+    
+    
+    
     /**
      * SELECTOR
      * @return ArrayList
@@ -126,6 +152,6 @@ public class ZonasDeTrabajo {
 
     @Override
     public String toString() {
-        return "ZonasDeTrabajo[" + "nombreRep=" + nombreRep + ", nombreAutor=" + nombreAutor + ",\n workspace" + workspace + ",\n index" + index + ",\n localRepository" + localRepository + ",\n remoteRepository" + remoteRepository + ']';
+        return "ZonasDeTrabajo[" + "nombreRep=" + nombreRep + ", nombreAutor=" + nombreAutor + ", FechaCreación=" + FechaCreacion + ",\n workspace" + workspace + ",\n index" + index + ",\n localRepository" + localRepository + ",\n remoteRepository" + remoteRepository + ']';
     }
 }

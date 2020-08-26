@@ -1,6 +1,7 @@
 
 package lab_git_20056001_munozcarreno;
 
+import java.util.ArrayList;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
@@ -17,14 +18,16 @@ public class Main {
        //se procede a ingresar el nombre del nuevo repositorio junto con el 
        //nombre del autor
        System.out.println("###SIMULACIÓN DE GIT###");
-       System.out.printf("Ingrese el nombre del repositorio: ");
+       System.out.printf("(*) Ingrese el nombre del repositorio: ");
        nombreRep = S.nextLine();
        System.out.println();
-       System.out.printf("Ingrese nombre del autor: ");
+       System.out.printf("(*) Ingrese nombre del autor: ");
        autor = S.nextLine();
        System.out.println();
-       ZonasDeTrabajo Zonas = new ZonasDeTrabajo(nombreRep,autor);
        
+       //SE HACE USO DEL MÉTODO gitInit()
+       ZonasDeTrabajo Zonas = Git.gitInit(nombreRep,autor);
+       System.out.println(Zonas.toString());
        
        
        //SE PROCEDE A MOSTRAR EL MENU A TRAVÉS DE UN BUCLE
@@ -57,12 +60,15 @@ public class Main {
                System.out.println("! Error, introduzca una opción válida.\n");
                S.next();
               
-           }
+             }
            
            //SE PROCEDE A REVISAR LA OPCIÓN ESCOGIDA A TRAVÉS DE UN SWITCH
        
             switch(opcion){
                 case 1: 
+                    ZonasDeTrabajo ZonasNueva1 = Git.gitAdd(Zonas);
+                    System.out.println(ZonasNueva1.toString());
+                    System.out.println();
 
                     break;
 
@@ -87,8 +93,8 @@ public class Main {
                     break;
 
                 case 7:
-                    ZonasDeTrabajo ZonasNueva = Git.AgregarArchivo(Zonas);
-                    System.out.println(ZonasNueva.toString());
+                    ZonasDeTrabajo ZonasNueva7 = Git.AgregarArchivo(Zonas);
+                    System.out.println(ZonasNueva7.toString());
                     System.out.println();
 
 

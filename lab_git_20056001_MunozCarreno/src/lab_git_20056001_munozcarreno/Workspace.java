@@ -16,6 +16,14 @@ public class Workspace {
         Archivos_Workspace = new ArrayList<>();
     }
     
+    //MÉTODOS
+    
+   
+    
+    
+    
+    
+    //GETTERS Y SETTERS
     
     /**
      * SELECTOR DE zonasWorkspace
