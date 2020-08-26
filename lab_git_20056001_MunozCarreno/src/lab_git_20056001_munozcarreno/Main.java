@@ -65,15 +65,18 @@ public class Main {
            //SE PROCEDE A REVISAR LA OPCIÓN ESCOGIDA A TRAVÉS DE UN SWITCH
        
             switch(opcion){
+                //ADD
                 case 1: 
                     ZonasDeTrabajo ZonasNueva1 = Git.gitAdd(Zonas);
                     System.out.println(ZonasNueva1.toString());
                     System.out.println();
 
                     break;
-
+                //COMMIT
                 case 2:
-
+                    ZonasDeTrabajo ZonasNueva2 = Git.gitCommit(Zonas);
+                    System.out.println(ZonasNueva2.toString());
+                    System.out.println();
                     break;
 
                 case 3:

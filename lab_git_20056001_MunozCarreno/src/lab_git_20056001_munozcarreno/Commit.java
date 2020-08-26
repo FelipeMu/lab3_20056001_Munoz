@@ -77,12 +77,8 @@ public class Commit {
 
     @Override
     public String toString() {
-        return "Commit{" + "autor=" + autor + ", tiempo=" + tiempo + ", mensaje=" + mensaje + ", archivosCommit=" + archivosCommit + '}';
+        return "[" + autor + ", " + tiempo + ", " + mensaje + ", " + archivosCommit + ']';
     }
     
-   
-    
-    
-    
-    
+
 }

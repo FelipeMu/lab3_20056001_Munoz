@@ -190,7 +190,48 @@ public class Git {
         return Zonas;        
     }
     
-    
+    public static ZonasDeTrabajo gitCommit(ZonasDeTrabajo Zonas){
+        Scanner S = new Scanner(System.in);
+        //SE PROCEDE A OBTENER EL NOMBRE DEL AUTOR DEL REPOSITORIO
+        String Autor;
+        Autor = Zonas.getNombreAutor();
+        //SE OBTIENE LA FECHA DE CREACIÓN DEL COMMIT
+        String FechaCommit;
+        FechaCommit = MetodosExtras.obtenerFecha();
+        //SE CREA UN ATRIBUTO PARA GUARDAR EL MENSAJE
+        String Mensaje;
+        //SE LE INDICA AL USUARIO QUE INGRESE UN MENSAJE PARA EL COMMIT
+        System.out.printf("Ingrese un mensaje descriptivo: ");
+        Mensaje = S.nextLine();
+        //SE PROCEDE UN OBJETO DE TIPO Index
+        Index index = Zonas.getIndex();
+        //SE OBTIENE LA LISTA DE ARCHIVOS
+        ArrayList<ArchTextoPlano> ArchivosIndex = index.getArchivos_Index();
+        
+        //SE PROCEDE A CREAR UN ONJETO DE TIPO Commit
+        Commit commit = new Commit(Autor,FechaCommit,Mensaje,ArchivosIndex);
+        
+        //AOHRA SE AGREGA EL COMMIT A LA ZONA LOCAL REPOSITORY
+        //SE OBTIENE UN OBJETO TIPO LocalRepository
+        LocalRepository localRep = Zonas.getLocalRepository();
+        //SE OBTIENE LA LISTA DE COMMIT DEL OBJETO localRep
+        ArrayList<Commit> ListaCommits = localRep.getCommitsEnLocal();
+        
+        //SE AGREGA EL NUEVO COMMIT
+        ListaCommits.add(commit);
+        //SE ACTUALIZA LA ZONA localRep
+        localRep.setCommitsEnLocal(ListaCommits);
+        //SE ACTUALIZA LA ZONA DE TRABAJO
+        Zonas.setLocalRepository(localRep);
+        
+        //AHORA SE PROCEDE A CREAR UN NUEVO OBJETO DE TIPO INDEX Y AGREGARLO A 
+        Index nuevo_index = new Index();
+        //SE ACTUALIZA LA ZONA DE TRABAJO
+        Zonas.setIndex(nuevo_index);
+        
+        
+        return Zonas;
+    }
     
     
     
