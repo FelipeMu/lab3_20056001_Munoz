@@ -4,14 +4,14 @@ package lab_git_20056001_munozcarreno;
 
 public class ZonasDeTrabajo {
     //se definen los atributos de la clase y los objetos (zonas de trabajo)
-    String nombreRep;
-    String nombreAutor;
-    String FechaCreacion;
+    private String nombreRep;
+    private  String nombreAutor;
+    private String FechaCreacion;
     
-    Workspace workspace;
-    Index index;
-    LocalRepository localRepository;
-    RemoteRepository remoteRepository;
+    private Workspace workspace;
+    private Index index;
+    private LocalRepository localRepository;
+    private RemoteRepository remoteRepository;
     
     /**
      * CONSTRUCTOR
@@ -80,12 +80,6 @@ public class ZonasDeTrabajo {
     }
 
     
-    
-    
-    
-    
-    
-    
     /**
      * SELECTOR
      * @return ArrayList
@@ -152,6 +146,6 @@ public class ZonasDeTrabajo {
 
     @Override
     public String toString() {
-        return "ZonasDeTrabajo[" + "nombreRep=" + nombreRep + ", nombreAutor=" + nombreAutor + ", FechaCreación=" + FechaCreacion + ",\n workspace" + workspace + ",\n index" + index + ",\n localRepository" + localRepository + ",\n remoteRepository" + remoteRepository + ']';
+        return "ZonasDeTrabajo[" + "nombreRep= " + nombreRep + ", nombreAutor= " + nombreAutor + ", FechaCreación= " + FechaCreacion + ",\n workspace" + workspace + ",\n index" + index + ",\n localRepository" + localRepository + ",\n remoteRepository" + remoteRepository + ']';
     }
 }

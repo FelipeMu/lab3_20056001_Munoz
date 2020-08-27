@@ -30,8 +30,8 @@ public class Main {
        System.out.println(Zonas.toString());
        
        
-       //SE PROCEDE A MOSTRAR EL MENU A TRAVÉS DE UN BUCLE
        int opcion=0;
+       //SE PROCEDE A MOSTRAR EL MENU A TRAVÉS DE UN BUCLE
        do{
            
            System.out.println("###SIMULACIÓN DE GIT###");
@@ -65,36 +65,38 @@ public class Main {
            //SE PROCEDE A REVISAR LA OPCIÓN ESCOGIDA A TRAVÉS DE UN SWITCH
        
             switch(opcion){
-                //ADD
+                // ADD
                 case 1: 
                     ZonasDeTrabajo ZonasNueva1 = Git.gitAdd(Zonas);
                     System.out.println(ZonasNueva1.toString());
                     System.out.println();
 
                     break;
-                //COMMIT
+                // COMMIT
                 case 2:
                     ZonasDeTrabajo ZonasNueva2 = Git.gitCommit(Zonas);
                     System.out.println(ZonasNueva2.toString());
                     System.out.println();
                     break;
-
+                // PULL
                 case 3:
 
                     break;  
-
+                // PUSH
                 case 4:
-
+                    ZonasDeTrabajo ZonasNueva4 = Git.gitPush(Zonas);
+                    System.out.println(ZonasNueva4.toString());
+                    System.out.println();
                     break;   
-
+                // STATUS
                 case 5:
 
                     break;
-
+                // LOG
                 case 6:
 
                     break;
-
+                // INGRESAR ARCHIVOS A WORKSPACE
                 case 7:
                     ZonasDeTrabajo ZonasNueva7 = Git.AgregarArchivo(Zonas);
                     System.out.println(ZonasNueva7.toString());
@@ -102,7 +104,7 @@ public class Main {
 
 
                     break;
-
+                // CERRAR SIMULADOR
                 case 8:
                     System.out.println();
                     System.out.println("Hasta luego.\n");

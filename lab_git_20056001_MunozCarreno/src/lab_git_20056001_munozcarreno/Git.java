@@ -184,12 +184,17 @@ public class Git {
                 Index IndexTemporal = Zonas.getIndex();
                 
                 IndexTemporal.setArchivos_Index(N_INDEX2);
-                Zonas.setIndex(IndexTemp);
+                Zonas.setIndex(IndexTemporal);
                 break;
         }
         return Zonas;        
     }
     
+    /**
+     * MODIFICADOR
+     * @param Zonas
+     * @return ZonasDeTrabajo
+     */
     public static ZonasDeTrabajo gitCommit(ZonasDeTrabajo Zonas){
         Scanner S = new Scanner(System.in);
         //SE PROCEDE A OBTENER EL NOMBRE DEL AUTOR DEL REPOSITORIO
@@ -203,37 +208,80 @@ public class Git {
         //SE LE INDICA AL USUARIO QUE INGRESE UN MENSAJE PARA EL COMMIT
         System.out.printf("Ingrese un mensaje descriptivo: ");
         Mensaje = S.nextLine();
-        //SE PROCEDE UN OBJETO DE TIPO Index
+        
+        //SE PROCEDE A OBTENER UN OBJETO DE TIPO Index
         Index index = Zonas.getIndex();
         //SE OBTIENE LA LISTA DE ARCHIVOS
         ArrayList<ArchTextoPlano> ArchivosIndex = index.getArchivos_Index();
         
-        //SE PROCEDE A CREAR UN ONJETO DE TIPO Commit
+
+        //SE PROCEDE A CREAR UN OBJETO DE TIPO Commit
         Commit commit = new Commit(Autor,FechaCommit,Mensaje,ArchivosIndex);
+
         
-        //AOHRA SE AGREGA EL COMMIT A LA ZONA LOCAL REPOSITORY
+        
         //SE OBTIENE UN OBJETO TIPO LocalRepository
         LocalRepository localRep = Zonas.getLocalRepository();
+        
         //SE OBTIENE LA LISTA DE COMMIT DEL OBJETO localRep
         ArrayList<Commit> ListaCommits = localRep.getCommitsEnLocal();
         
+        
         //SE AGREGA EL NUEVO COMMIT
         ListaCommits.add(commit);
-        //SE ACTUALIZA LA ZONA localRep
-        localRep.setCommitsEnLocal(ListaCommits);
-        //SE ACTUALIZA LA ZONA DE TRABAJO
-        Zonas.setLocalRepository(localRep);
+
         
         //AHORA SE PROCEDE A CREAR UN NUEVO OBJETO DE TIPO INDEX Y AGREGARLO A 
         Index nuevo_index = new Index();
+        //SE ACTUALIZA LA ZONA localRep
+        localRep.setCommitsEnLocal(ListaCommits); 
         //SE ACTUALIZA LA ZONA DE TRABAJO
         Zonas.setIndex(nuevo_index);
-        
-        
+        //SE ACTUALIZA LA ZONA DE TRABAJO
+        Zonas.setLocalRepository(localRep);
+       
         return Zonas;
     }
     
+    /**
+     * MODIFICADOR
+     * @param Zonas
+     * @return ZonasDeTrabajo
+     */
+    public static ZonasDeTrabajo gitPush(ZonasDeTrabajo Zonas){
+  
+        //SE PROCEDE A OBTENER EL OBJETO DE TIPO localRepository 
+        LocalRepository local = Zonas.getLocalRepository();
+        //SE OBTIENE LOS COMMIT DEL OBJETO local
+        ArrayList<Commit> commitDeLocal = local.getCommitsEnLocal();
+         
+        //SE OBTIENE EL OBJETO UN OBJETO RemoteRepository
+        RemoteRepository remote = Zonas.getRemoteRepository();
+        
+        //SE CDEFINE UN OBJETO DE TIPO ArrayList<Commits>
+        ArrayList<Commit> commitDeRemote = remote.getCommitsEnRemote();
+        
+        //SE CREA UN OBJETO DE TIPO ArrayList<Commit>
+        ArrayList<Commit> NuevoConjuntoCommits = new ArrayList<>();
+        
+        //SE PROCEDE A UNIR LOS COMMITS DE LOCAL REPOSITORY Y LOCAL REPOSITORY
+        NuevoConjuntoCommits = MetodosExtras.UnirConjuntoDeCommits(commitDeLocal, commitDeRemote);
+        //SE CREA UN OBJETO DE TIPO ArrayList<Commit>
+        ArrayList<Commit> NuevoConjuntoCommits2 = new ArrayList<>();
+        //SE PROCEDE A ELIMINAR LOS REPETIDOS
+        NuevoConjuntoCommits2 = MetodosExtras.BorrarCommitRep(NuevoConjuntoCommits);
+
+        
+        // SE CREA UN NUEVO OBJETO DE TIPO RemoteRepository
+        RemoteRepository remoteFinal = new RemoteRepository();
+        //SE ACTUALIZA LA ZONA remtoeFinal
+        remoteFinal.setCommitsEnRemote(NuevoConjuntoCommits2);
+        ///SE ACTUALIZA LA ZONA DE TRABAJO
+        Zonas.setRemoteRepository(remoteFinal);
+        
+ 
+        return Zonas;
     
-    
+    }
     
 }

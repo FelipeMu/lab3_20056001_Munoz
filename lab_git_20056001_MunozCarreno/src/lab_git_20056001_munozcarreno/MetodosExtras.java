@@ -4,7 +4,6 @@ package lab_git_20056001_munozcarreno;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
-import java.util.InputMismatchException;
 import java.util.Scanner;
 
 /*
@@ -149,4 +148,75 @@ public class MetodosExtras {
         
     
     }
+    
+    /**
+     * MODIFICADOR
+     * @param conj1
+     * @param conj2
+     * @return ArrayList<>
+     */
+    public static ArrayList<Commit> UnirConjuntoDeCommits(ArrayList<Commit> conj1, ArrayList<Commit> conj2){
+        
+        int i=0;
+        ArrayList<Commit> NuevoConjuntoCommits = new ArrayList<>();
+        
+        for(i=0;i<conj2.size();i++){
+            NuevoConjuntoCommits.add(conj2.get(i));
+        }
+        for(i=0;i<conj1.size();i++){
+            NuevoConjuntoCommits.add(conj1.get(i));
+        }
+        //ArrayList<Commit> NuevoConjuntoCommits2 = new ArrayList<>();
+        //NuevoConjuntoCommits2 = BorrarCommitRep(NuevoConjuntoCommits);
+        
+        
+        return NuevoConjuntoCommits;
+        
+      
+    
+    }
+    
+    
+    public static ArrayList<Commit> BorrarCommitRep(ArrayList<Commit> Lcommits){
+        //ITERADOR
+        int i,j;
+        //SI EL ACTIVADOR ES MAYOR A 1 => QUE EL ARCHIVOS ESTÁ MAS DE UNA VEZ
+        int activador=0;
+        ArrayList<Commit> NuevosL = new ArrayList<>();
+        //OBJETO DE TIPO ARCHIVO
+        Commit ElemCommit;
+        //ATRIBUTO TIPO STRING QUE GUARDA EL NOMBRE DEL ARCHIVO ANTERIOR
+        String nc1;
+        //OBJETO DE TIPO ARCHIVO
+        Commit ElemCommitTemporal;
+        //ATRIBUTO TIPO STRING QUE GUARDA EL NOMBRE DEL ARCHIVO ANTERIOR
+        String nc2;
+        
+        //BUCLE PARA ELIMINAR ARCHIVOS REPETIDOS
+        for(i=0;i<Lcommits.size();i++){
+            ElemCommit=Lcommits.get(i); // SE OBTIENE EL ARCHIVO EN LA POSICIÓN i
+            nc1=ElemCommit.getTiempo();
+            for(j=i;j<Lcommits.size();j++){
+                ElemCommitTemporal=Lcommits.get(j);
+                nc2=ElemCommitTemporal.getTiempo();
+                //SE COMPARARN LOS NOMBRES DE LOS ARCHIVOS
+                if(nc1.equals(nc2)){
+                    activador+=1;
+                }   
+            }
+            if(activador == 1){
+                NuevosL.add(ElemCommit);
+            }
+            //SE REINICIA EL CONDICIONADOR
+            activador=0;
+        }
+        return NuevosL;
+    
+    }
+    
+    
+    
+    
+    
+    
 }

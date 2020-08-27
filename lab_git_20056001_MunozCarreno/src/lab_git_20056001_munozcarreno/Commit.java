@@ -5,10 +5,10 @@ import java.util.ArrayList;
 
 public class Commit {
     //ATRIBUTOS U OBJETOS
-    String autor;
-    String tiempo;
-    String mensaje;
-    ArrayList<ArchTextoPlano> archivosCommit;
+    private String autor;
+    private String tiempo;
+    private String mensaje;
+    private ArrayList<ArchTextoPlano> archivosCommit;
 
     /**
      * CONSTRUCTOR
@@ -75,6 +75,23 @@ public class Commit {
         this.mensaje = mensaje;
     }
 
+    /**
+     * SELECTOR
+     * @return ArrayList
+     */
+    public ArrayList<ArchTextoPlano> getArchivosCommit() {
+        return archivosCommit;
+    }
+
+    /**
+     * MODIFICADOR
+     * @param archivosCommit 
+     */
+    public void setArchivosCommit(ArrayList<ArchTextoPlano> archivosCommit) {
+        this.archivosCommit = archivosCommit;
+    }
+
+    
     @Override
     public String toString() {
         return "[" + autor + ", " + tiempo + ", " + mensaje + ", " + archivosCommit + ']';
