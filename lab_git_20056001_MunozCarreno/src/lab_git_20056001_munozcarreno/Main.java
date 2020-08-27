@@ -80,7 +80,9 @@ public class Main {
                     break;
                 // PULL
                 case 3:
-
+                    ZonasDeTrabajo ZonasNueva3 = Git.gitPull(Zonas);
+                    System.out.println(ZonasNueva3.toString());
+                    System.out.println();
                     break;  
                 // PUSH
                 case 4:
@@ -90,7 +92,7 @@ public class Main {
                     break;   
                 // STATUS
                 case 5:
-
+                    Git.gitStatus(Zonas);
                     break;
                 // LOG
                 case 6:

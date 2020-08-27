@@ -192,6 +192,42 @@ public class MetodosExtras {
         //ATRIBUTO TIPO STRING QUE GUARDA EL NOMBRE DEL ARCHIVO ANTERIOR
         String nc2;
         
+        
+        
+        
+        //COMPARADORES
+        
+        //COMPARADORES DE AUTOR DEL COMMIT
+        String autor1;
+        String autor2;
+        
+        //COMPARADORES DE MENSAJE
+        String mensaje1;
+        String mensaje2;
+        
+        
+        //COMPARADORES TAMAÑO LISTA
+        int tamano1;
+        int tamano2;
+        
+        
+        //COMPARADORES DE NOMBRE DE ARCHIVO
+        String nombre_archivo1;
+        String nombre_archivo2;
+        
+        //COMAPARADORES DE CONTENIDO DE ARCHIVO
+        String contenido1;
+        String contenido2;
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
         //BUCLE PARA ELIMINAR ARCHIVOS REPETIDOS
         for(i=0;i<Lcommits.size();i++){
             ElemCommit=Lcommits.get(i); // SE OBTIENE EL ARCHIVO EN LA POSICIÓN i
@@ -199,7 +235,7 @@ public class MetodosExtras {
             for(j=i;j<Lcommits.size();j++){
                 ElemCommitTemporal=Lcommits.get(j);
                 nc2=ElemCommitTemporal.getTiempo();
-                //SE COMPARARN LOS NOMBRES DE LOS ARCHIVOS
+                //SE COMPARARN LA FECHA DE CREACIÓN DEL COMMIT
                 if(nc1.equals(nc2)){
                     activador+=1;
                 }   
@@ -215,6 +251,34 @@ public class MetodosExtras {
     }
     
     
+    public static ArrayList<ArchTextoPlano> ObtenerArchivosDeRemote(ArrayList<Commit> ListaCommits){
+        //SE CREA UN OBJETO DE TIPO ArrayList<ArchTextoPlano> PARA GUARDAR TODOS
+        //LOS ARCHIVOS ALMACENADOS EN REMOTE REPOSITORY
+        ArrayList<ArchTextoPlano> TodosLosArchivos = new ArrayList<>();
+        //ITERADORES
+        int i,j,p;
+        
+        //SE CREA OBJETO Commit
+        Commit commit;
+         
+        //ArrayList<ArchTextoPlano> ArchivosIniciales = new ArrayList<>();
+        
+        //LISTA DE ARCHIVOS DE UN COMMIT
+         ArrayList<ArchTextoPlano> archTemp = new ArrayList<>();
+        
+        
+        //FOR QUE RECORRE TODA LA LISTA DE COMMITS
+        for(i=0;i<ListaCommits.size();i++){
+            //SE OPBTIENE UN COMMIT
+            commit = ListaCommits.get(i);
+            //SE OBTIENE LA LISTA DE ARCHIVOS DEL COMMIT
+            archTemp = commit.getArchivosCommit();
+            //SE GUARDA LA LISTA DE ARCHIVOS EN UN NUEVO OBJETO
+            TodosLosArchivos = UnirListasDeArchivos(archTemp,TodosLosArchivos);
+        }
+        return TodosLosArchivos;
+        
+    }
     
     
     

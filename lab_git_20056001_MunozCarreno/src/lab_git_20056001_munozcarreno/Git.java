@@ -199,7 +199,10 @@ public class Git {
         Scanner S = new Scanner(System.in);
         //SE PROCEDE A OBTENER EL NOMBRE DEL AUTOR DEL REPOSITORIO
         String Autor;
-        Autor = Zonas.getNombreAutor();
+        //SE INGRESA EL AUTOR DEL COMMIT
+        System.out.printf("Ingrese nombre del autor: ");
+        Autor = S.nextLine();
+        
         //SE OBTIENE LA FECHA DE CREACIÓN DEL COMMIT
         String FechaCommit;
         FechaCommit = MetodosExtras.obtenerFecha();
@@ -279,9 +282,150 @@ public class Git {
         ///SE ACTUALIZA LA ZONA DE TRABAJO
         Zonas.setRemoteRepository(remoteFinal);
         
+        
+        
+        //SE 
+        
+        
+        
+        
  
         return Zonas;
     
     }
+    
+    /**
+     * MODIFICADOR
+     * @param Zonas
+     * @return ZonasDeTrabajo
+     */
+    public static ZonasDeTrabajo gitPull(ZonasDeTrabajo Zonas){
+        //SE PROCEDE A CREAR UN OBJETO DE TIPO ArrayList<ArchTextoPlano> PARA
+        //GUARDAR TODOS LOS ARCHIVOS QUE EXISTEN EN REMOTE REPOSITORY
+        ArrayList<ArchTextoPlano> TodosLosArchivosR= new ArrayList<>();
+        
+        //SE OBTIENE UN  OBJETO DE TIPO RemoteRepsitory
+        RemoteRepository remote = Zonas.getRemoteRepository();
+        //SE OBTIENE LA LISTA DE COMMIT DEL OBJETO remote (instruccion anterior)
+        ArrayList<Commit> CommitsRemote = remote.getCommitsEnRemote();
+        
+        //SE OBTIENE UNA LISTA CON TODOS LOS ARCHUIVOS DE REMOTE REPOSITORY
+        TodosLosArchivosR = MetodosExtras.ObtenerArchivosDeRemote(CommitsRemote);
+        
+        //SE PROCEDE A ELIMINAR LOS REPETIDOS
+        
+        //SE CREA UN NUEVO ONEJTO TIPO ArrayList<ArchTextoPlano>
+        ArrayList<ArchTextoPlano> NuevosArchivosUnicos = new ArrayList<>();
+        
+        //SE OBTIENE UNA LISTA DE ARCHIVOS SIN REPETICIONES
+        NuevosArchivosUnicos = MetodosExtras.EliminarArchRep(TodosLosArchivosR);
+        
+        //SE ACTUALIZA LA ZONA WORKSPACE
+        Workspace workspace = Zonas.getWorkspace();
+        //SE ACTUALIZA LA ZONA WORKSPACE
+        workspace.setArchivos_Workspace(NuevosArchivosUnicos);
+        
+        //SE ACTUALIZA LA ZONA DE TRABAJO
+        Zonas.setWorkspace(workspace);
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        return Zonas;
+   
+    
+    }
+    
+    
+    public static void gitStatus(ZonasDeTrabajo Zonas){
+        
+        //SE PROCEDE A MOSTRAR EL NOMBRE DEL REPOSITORIO Y SU AUTOR
+        System.out.println("###REPOSITORIO ACTUAL###\n");
+        
+        //SE MUESTRA EL NOMBRE DEL REPOSITOIO
+        System.out.printf("Nombre repositorio: %s \n",Zonas.getNombreRep());
+        //SE MUESTRA EL AUTOR DEL REPOSITORIO
+        System.out.printf("Nombre autor: %s \n",Zonas.getNombreAutor());
+        
+        //AHORA DE DEBE OBTENER LA CANTIDAD DE ARCHIVOS QUE POSEE WORKSPACE E
+        //INDEX Y LA CANTIDAD DE COMMIT EN LOCAL REPOSITORY
+        
+        //SE CRRAN LAS 3 VARIBLES PARA ACUMULAR LAS RESPECTIVAS CANTIDADES
+        int cantArch_W;
+        int cantArch_I;
+        int cantCommits_Local;
+        
+        //SE OBTIENE EL OBJETO TIPO WORKSPACE
+        Workspace workspace = Zonas.getWorkspace();
+        ArrayList<ArchTextoPlano> cantidadAW = workspace.getArchivos_Workspace();
+        //SE GUARDA LA CANTIDAD DE ARCHIVOS DE WORKSPACE
+        cantArch_W = cantidadAW.size();
+        
+        
+        //SE OBTIENE EL OBJETO TIPO INDEX
+        Index index = Zonas.getIndex();
+        ArrayList<ArchTextoPlano> cantidadAI = index.getArchivos_Index();
+        //SE GUARDA LA CANTIDAD DE ARCHIVOS DE WORKSPACE
+        cantArch_I = cantidadAI.size();
+        
+        //SE OBTIENE UN OBJETO DE TIPO LOCAL REPOSITORY
+        LocalRepository localRep = Zonas.getLocalRepository();
+        ArrayList<Commit> commitsL = localRep.getCommitsEnLocal();
+        //SE OBTIENE LA CANTIDAD DE COMMIT QUE POSEE LOCAL REPOSITORY
+        cantCommits_Local = commitsL.size();
+        
+        //SE MUESTRA LA CANTIDAD DE ARCHIVOS QUE POSEE WORKAPCE
+        System.out.printf("Cantidad archivos en Workspace: %d \n",cantArch_W);
+        //SE MUESTRA LA CANTIDAD DE ARCHIVOS QUE POSEE INDEX
+        System.out.printf("Cantidad archivos en Index: %d \n",cantArch_I);
+        //SE MUESTRA LA CANTIDAD DE COMMITS EN LOCAL REPOSITORY
+        System.out.printf("Cantidad de commits en Local repostiroy: %d \n",cantCommits_Local);
+        
+        //AHORA SE DEBEN IGUALAR LA CANTIDAD DE COMMMIT DE LOCAL REPOSITORY
+        //Y REMOTE REPOSITORY PARA VER SI ESTAN ACTUALIZADOS
+        
+        //LA CANTIDAD DE LOS COMMIT DE LOCAL YA SE OBTUVIERON ANTES *********
+        
+        
+        int cantCommits_Remote;
+        //SE PROCEDE A OBTENER LA CANTIDAD DE COMMIT DE REMOTE REPOSITORY
+        RemoteRepository remoteRep = Zonas.getRemoteRepository();
+        ArrayList<Commit> commitsR = remoteRep.getCommitsEnRemote();
+        cantCommits_Remote = commitsR.size();
+        
+        //SE PROCEDE A IGUALARLOS
+        //IGUALES => REMOTE ACTUALIZADO
+        //DISTINTOS => REMOTE NO ACTUALIZADO
+        
+        String si = "actualizado";
+        String no = "no actualizado";
+        
+        if(cantCommits_Local == cantCommits_Remote){
+            System.out.printf("Estado de Remote repository: %s \n\n",si);
+        }
+        else{
+            System.out.printf("Estado de Remote repository: %s \n\n",no);
+        
+        }
+        System.out.printf("####FIN REPOSITORIO#####\n\n",no);
+        
+        
+        
+        
+        
+        
+
+        
+    
+    
+    }
+   
     
 }
