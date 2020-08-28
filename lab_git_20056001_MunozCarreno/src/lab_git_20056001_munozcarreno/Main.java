@@ -1,7 +1,6 @@
 
 package lab_git_20056001_munozcarreno;
 
-import java.util.ArrayList;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
@@ -96,7 +95,7 @@ public class Main {
                     break;
                 // LOG
                 case 6:
-
+                    Git.gitLog(Zonas);
                     break;
                 // INGRESAR ARCHIVOS A WORKSPACE
                 case 7:

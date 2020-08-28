@@ -28,8 +28,8 @@ public class Git {
         
     }
     
-    //MÉTODOS
     
+    //MÉTODOS   
     
     /**
      * CONSTRUCTOR INICIAL
@@ -43,8 +43,7 @@ public class Git {
         ZonasDeTrabajo NuevasZonas = new ZonasDeTrabajo(nombreRep,autor,FechaCreacion);
         return NuevasZonas;
     }
-    
-    
+      
     
     /**
      * MODIFICADOR
@@ -238,10 +237,33 @@ public class Git {
         Index nuevo_index = new Index();
         //SE ACTUALIZA LA ZONA localRep
         localRep.setCommitsEnLocal(ListaCommits); 
-        //SE ACTUALIZA LA ZONA DE TRABAJO
-        Zonas.setIndex(nuevo_index);
-        //SE ACTUALIZA LA ZONA DE TRABAJO
+        
+         //SE ACTUALIZA LA ZONA DE TRABAJO
         Zonas.setLocalRepository(localRep);
+        
+        
+        //SE OBTIENE EL OBJETO LocalRepositorty
+        LocalRepository L = Zonas.getLocalRepository();
+        //SE CREA UN OBJETO DE TIPO ArrayList<Commit>
+        ArrayList<Commit> commitsARevisar = L.getCommitsEnLocal();
+        
+         
+        //SE CREA UN OBJETO DE TIPO ArrayList<Commit>
+        ArrayList<Commit> nuevaListaC = new ArrayList<>();
+        //EN nuevaLista SE ALMACENA LA LISTA DE COMMITS PERTENECIENTE A LA
+        //ZONA LOCAL REPOSITORY (CON COMMMITS UNICOS)
+        nuevaListaC = MetodosExtras.BorrarCommitRep(commitsARevisar);
+        
+        //SE CREA UN NUEVO OBJETO DE TIPO LocalRepository
+        LocalRepository LocalDef = new LocalRepository();
+        //SE ACTUALIZA LA LISTA DE COMMITS DEL OBJETO ANTERIOR
+        LocalDef.setCommitsEnLocal(nuevaListaC);
+        
+        //SE ACTUALIZA LA ZONA DE TRABAJO CON RESPECTO A LA ZONA INDEX
+        Zonas.setIndex(nuevo_index);
+        //SE ACTUALIZA LA ZONA DE TRABAJO CON RESPECTO A LA ZONA LOCAL
+        //REPOSITORY
+        Zonas.setLocalRepository(LocalDef);
        
         return Zonas;
     }
@@ -281,17 +303,8 @@ public class Git {
         remoteFinal.setCommitsEnRemote(NuevoConjuntoCommits2);
         ///SE ACTUALIZA LA ZONA DE TRABAJO
         Zonas.setRemoteRepository(remoteFinal);
-        
-        
-        
-        //SE 
-        
-        
-        
-        
- 
+       
         return Zonas;
-    
     }
     
     /**
@@ -309,7 +322,7 @@ public class Git {
         //SE OBTIENE LA LISTA DE COMMIT DEL OBJETO remote (instruccion anterior)
         ArrayList<Commit> CommitsRemote = remote.getCommitsEnRemote();
         
-        //SE OBTIENE UNA LISTA CON TODOS LOS ARCHUIVOS DE REMOTE REPOSITORY
+        //SE OBTIENE UNA LISTA CON TODOS LOS ARCHIVOS DE REMOTE REPOSITORY
         TodosLosArchivosR = MetodosExtras.ObtenerArchivosDeRemote(CommitsRemote);
         
         //SE PROCEDE A ELIMINAR LOS REPETIDOS
@@ -327,23 +340,15 @@ public class Git {
         
         //SE ACTUALIZA LA ZONA DE TRABAJO
         Zonas.setWorkspace(workspace);
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
+
         return Zonas;
-   
-    
+
     }
     
-    
+    /**
+     * 
+     * @param Zonas 
+     */
     public static void gitStatus(ZonasDeTrabajo Zonas){
         
         //SE PROCEDE A MOSTRAR EL NOMBRE DEL REPOSITORIO Y SU AUTOR
@@ -415,17 +420,71 @@ public class Git {
         
         }
         System.out.printf("####FIN REPOSITORIO#####\n\n",no);
-        
-        
-        
-        
-        
-        
-
-        
-    
-    
+ 
     }
-   
     
+    
+    /**
+     * 
+     * @param Zonas 
+     */
+    public static void gitLog(ZonasDeTrabajo Zonas){
+        //SE DEBEN MOSTRAR TODOS LOS COMMITS (MÁX 5 COMMITS)
+
+ 
+        //SE CREA VARIABLE PARA ALMACENAR LA CANTIDAD DE COMMIT ALMACENADOS
+        int cantCommits;
+        //VARIABLE PARA EL NÚMERO MÁXIMO DE COMMITS
+        int max = 5;
+        
+        //SE PROCEDE A OBTENER EL OBJETO TIPO LocalRepository
+        LocalRepository L = Zonas.getLocalRepository();
+        //SE OBTIENE LA LISTA DE COMMITS
+        //SE CREA OBJETO PARA ALMACENAR LA LISTA DE COMMITS
+        ArrayList<Commit> commits = L.getCommitsEnLocal();
+       
+        
+        //LUEGO LA CANTIDAD DE COMMITS SE OBTIENE DE LA SIGUIENTE MANERA:
+        cantCommits = commits.size();
+ 
+        //ITERADOR
+        int i=1;
+        int j;
+        
+        String fecha;
+        String mensaje;
+        String nombre_archivos;
+        
+        //SE DEFINE OBJETO DE TIPO Commits
+        Commit C;
+        
+        //SE DEFINE OBJETO DE TIPO ArrayList<ArchTextolano>
+        ArrayList<ArchTextoPlano> listaArchivos =  new ArrayList<>();
+        
+        //SE DEFINE OBJETO TIPO ArchTextoPlano
+        ArchTextoPlano archivo;
+        
+        System.out.println("###ÚLTIMOS 5 COMMITS EN LOCAL REPOSITORY###\n");
+        while(cantCommits>0 && max>0){
+            
+            //SE OBTIENE EL COMMIT EN LA POSICIÓN i
+            C = commits.get(cantCommits-1);
+            
+            System.out.printf("Commit %d:\n",i);
+            System.out.printf("-------------\n");
+            System.out.printf("Fecha: %s\n",C.getTiempo());
+            System.out.printf("Mensaje Descriptivo: %s\n",C.getMensaje());
+            listaArchivos = C.getArchivosCommit();
+            System.out.printf("Archivos:\n ");
+            for(j=0;j<listaArchivos.size();j++){
+                archivo = listaArchivos.get(j);
+                System.out.printf("\t%s\n",archivo.getNombre());
+            }
+            System.out.println();
+            i+=1;
+            max-=1;
+            cantCommits-=1;
+        }
+        System.out.println("###########################################\n\n");
+    }  
 }
