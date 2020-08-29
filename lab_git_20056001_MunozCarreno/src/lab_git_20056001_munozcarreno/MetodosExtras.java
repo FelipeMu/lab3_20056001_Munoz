@@ -173,7 +173,6 @@ public class MetodosExtras {
     
     
     public static ArrayList<Commit> BorrarCommitRep(ArrayList<Commit> Lcommits){
-        System.out.println("\t\t\t\t\t\t\t\t\t\t\t\tENTRO AL METODO BorrarCommitRep\n\n");
         //ITERADOR
         int i,j;
         //SI EL ACTIVADOR ES MAYOR A 1 => QUE EL ARCHIVOS ESTÁ MAS DE UNA VEZ
@@ -340,4 +339,119 @@ public class MetodosExtras {
         }
         return TodosLosArchivos;
     } 
+    
+    
+    /**
+     * 
+     * @param ListaComandos
+     * @param comando
+     * @return boolean
+     */
+    public static boolean ComandoPermitido(ArrayList<String> ListaComandos,String comando){
+       
+        boolean ejecutar = true;
+        //SE PROCEDE A VERIFICAR QUE EL COMANDO "comando" SELECCIONADO SEA VÁLIDO
+        
+        //COMANDO Add _____________________
+        
+        //STRING QUE ALMACENARÁ EL ÚLTIMO COMANDO EJECUTADO
+        String C;
+        
+        //ENTERO QUE ALMACENA EL TAMAÑO DE LA LISTA ListaComandos
+        int largo;
+        //CASO BORDE
+        if(ListaComandos.isEmpty() && comando.equals("CargarArchivosWorkspace->")){
+            
+            ejecutar = true;
+        }
+        
+        else{
+        
+            if(ListaComandos.isEmpty()){
+                ejecutar = false;
+            }
+            
+            else{
+                largo = ListaComandos.size();
+
+                //SE OBTIENE EL COMANDO (String)
+                C = ListaComandos.get(largo-1);
+
+
+                switch(comando){
+
+                    //COMANDO ADD
+                    case "CargarArchivosWorkspace->":
+                        if(ListaComandos.isEmpty() || C.equals("CargarArchivosWorkspace->") || C.equals("Add->") || C.equals("Commit->") || C.equals("Pull->") ){
+                            ejecutar = true;
+
+                        }
+                        else{
+                            ejecutar = false;
+                        }
+
+                        break;
+
+                    //COMANDO ADD    
+                    case "Add->":
+                        if(  C.equals("CargarArchivosWorkspace->") || C.equals("Add->") || C.equals("Commit->") || C.equals("Pull->")  ){
+                        ejecutar = true;
+
+                        }
+                        else{
+                            ejecutar = false;
+                        }
+                        break;
+
+                    //COMANDO COMMIT
+                    case "Commit->":
+                        if( C.equals("Add->") ){
+                        ejecutar = true;
+
+                        }
+                        else{
+                            ejecutar = false;
+                        }
+                        break;
+
+                    //COMANDO PUSH
+                    case "Push->":
+                        if( C.equals("Commit->") ){   
+                        ejecutar = true;
+
+                        }
+                        else{
+                            ejecutar = false;
+                        }
+                        break;
+
+                    //COMANDO PULL
+                    case "Pull->":
+                        if( C.equals("Push->") ){
+                        ejecutar = true;
+
+                        }
+                        else{
+                            ejecutar = false;
+                        }
+                        break;
+
+                }
+            }   
+        }
+        return ejecutar;
+    }
+    
+    
+    public static void mostrarComandos(ArrayList<String> LineaDeTiempo){
+        int i=0;
+        for(i=0;i<LineaDeTiempo.size();i++){
+            System.out.printf("%s",LineaDeTiempo.get(i));
+        
+        }
+        System.out.println();
+    }
+    
+    
+ 
 }

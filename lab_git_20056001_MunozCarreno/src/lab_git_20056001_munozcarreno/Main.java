@@ -1,6 +1,7 @@
 
 package lab_git_20056001_munozcarreno;
 
+import java.util.ArrayList;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
@@ -29,10 +30,14 @@ public class Main {
        System.out.println(Zonas.toString());
        
        
+       //Se crea una lista tipo Strinb
+       ArrayList<String> COMANDOS = new ArrayList<>();
+       
+       
        int opcion=0;
        //SE PROCEDE A MOSTRAR EL MENU A TRAVÉS DE UN BUCLE
        do{
-           
+           System.out.println();
            System.out.println("###SIMULACIÓN DE GIT###");
            System.out.println("Escoja una opcion: ");
            System.out.println("1. add");
@@ -61,33 +66,74 @@ public class Main {
               
              }
            
-           //SE PROCEDE A REVISAR LA OPCIÓN ESCOGIDA A TRAVÉS DE UN SWITCH
-       
+            
+            //STRING PARA VERIFICAR SI EL COMANDO INGRESADO ES PERMITIDO
+            String comando;
+            //TIPO BOOLEAN QUE PERMITE REALIZAR EL COMANDO
+            boolean permitir;
+
+           
+            
+            //SE PROCEDE A REVISAR LA OPCIÓN ESCOGIDA A TRAVÉS DE UN SWITCH
             switch(opcion){
                 // ADD
                 case 1: 
-                    ZonasDeTrabajo ZonasNueva1 = Git.gitAdd(Zonas);
-                    System.out.println(ZonasNueva1.toString());
-                    System.out.println();
+                    permitir = MetodosExtras.ComandoPermitido(COMANDOS,"Add->");
+                    if(permitir){
+                        COMANDOS.add("Add->");
+                        ZonasDeTrabajo ZonasNueva1 = Git.gitAdd(Zonas);
+                        System.out.println(ZonasNueva1.toString());
+                        System.out.println();
+                        MetodosExtras.mostrarComandos(COMANDOS);
+                    }
+                    else{
+                        System.out.println("Si por casualidad realizó un Push, es necesario que realice un Pull para ejecutar le comando Add,\nsi ese no es el caso, entonces agregue archivos a la zona workspace.\n");
+                    }
+                    
 
                     break;
                 // COMMIT
                 case 2:
-                    ZonasDeTrabajo ZonasNueva2 = Git.gitCommit(Zonas);
-                    System.out.println(ZonasNueva2.toString());
-                    System.out.println();
+                    permitir = MetodosExtras.ComandoPermitido(COMANDOS,"Commit->");
+                    if(permitir){
+                        COMANDOS.add("Commit->");
+                        ZonasDeTrabajo ZonasNueva2 = Git.gitCommit(Zonas);
+                        System.out.println(ZonasNueva2.toString());
+                        System.out.println();
+                        MetodosExtras.mostrarComandos(COMANDOS);
+                    }
+                    else{
+                        System.out.println("Por favor, realice el comando Add antes de crear un Commit.");
+                    }
                     break;
                 // PULL
                 case 3:
-                    ZonasDeTrabajo ZonasNueva3 = Git.gitPull(Zonas);
-                    System.out.println(ZonasNueva3.toString());
-                    System.out.println();
+                    permitir = MetodosExtras.ComandoPermitido(COMANDOS,"Pull->");
+                    if(permitir){
+                        COMANDOS.add("Pull->");
+                        ZonasDeTrabajo ZonasNueva3 = Git.gitPull(Zonas);
+                        System.out.println(ZonasNueva3.toString());
+                        System.out.println();
+                        MetodosExtras.mostrarComandos(COMANDOS);
+                    }
+                    else{
+                        System.out.println("Por favor, realice el comando Push antes de ejecutar un Pull.");
+                    }
                     break;  
                 // PUSH
                 case 4:
-                    ZonasDeTrabajo ZonasNueva4 = Git.gitPush(Zonas);
-                    System.out.println(ZonasNueva4.toString());
-                    System.out.println();
+                    permitir = MetodosExtras.ComandoPermitido(COMANDOS,"Push->");
+                    if(permitir){
+                        COMANDOS.add("Push->");
+                        ZonasDeTrabajo ZonasNueva4 = Git.gitPush(Zonas);
+                        System.out.println(ZonasNueva4.toString());
+                        System.out.println();
+                        MetodosExtras.mostrarComandos(COMANDOS);
+                    }
+                    else{
+                        System.out.println("por favor, genere un Commit antes de realizar un Push.");
+                    
+                    }
                     break;   
                 // STATUS
                 case 5:
@@ -99,10 +145,17 @@ public class Main {
                     break;
                 // INGRESAR ARCHIVOS A WORKSPACE
                 case 7:
-                    ZonasDeTrabajo ZonasNueva7 = Git.AgregarArchivo(Zonas);
-                    System.out.println(ZonasNueva7.toString());
-                    System.out.println();
-
+                    permitir = MetodosExtras.ComandoPermitido(COMANDOS,"CargarArchivosWorkspace->");
+                    if(permitir){
+                        COMANDOS.add("CargarArchivosWorkspace->");
+                        ZonasDeTrabajo ZonasNueva7 = Git.AgregarArchivo(Zonas);
+                        System.out.println(ZonasNueva7.toString());
+                        System.out.println();
+                        MetodosExtras.mostrarComandos(COMANDOS);
+                    }
+                    else{
+                        System.out.println("Para seguir cargando archivos a workspace, por favor realice un Pull");
+                    }
 
                     break;
                 // CERRAR SIMULADOR
