@@ -1,7 +1,19 @@
-
 package lab_git_20056001_munozcarreno;
 
+
 import java.util.ArrayList;
+
+/*
+descripcion clase: La clase actua como constructor de la zona remote
+repository.
+
+atributos: Archivos_Workspace (lista de tipo ArrayList<ArchTextoPlano>)
+
+metodos incorporados: sin metodos.
+
+
+*/
+
 
 
 public class Workspace {
@@ -12,7 +24,7 @@ public class Workspace {
      * CONSTRUCTOR
      */
     public Workspace() {
-        //SE INICIALIZA LA ZONA WORKSPACE COMO UNA LISTA VACÍA
+        //SE INICIALIZA LA ZONA WORKSPACE COMO UNA LISTA VACIA
         Archivos_Workspace = new ArrayList<>();
     }
     

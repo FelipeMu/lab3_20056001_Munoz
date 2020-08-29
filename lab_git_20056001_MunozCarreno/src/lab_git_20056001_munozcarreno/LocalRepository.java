@@ -1,8 +1,20 @@
-
 package lab_git_20056001_munozcarreno;
+
 
 import java.util.ArrayList;
 
+
+/*
+descripcion clase: La clase tiene como objetivo inicializar la zona local
+repository (constructor de la zona local repository)
+
+atributos: CommitsEnLocal (lista de tipo ArrayList<Commit>, que contiene todos
+los commit realizados por el usuario)
+
+metodos incorporados: sin metodos.
+
+
+*/
 
 public class LocalRepository {
     //atributos u objetos

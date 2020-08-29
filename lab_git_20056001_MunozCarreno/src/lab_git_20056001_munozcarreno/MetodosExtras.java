@@ -1,5 +1,5 @@
-
 package lab_git_20056001_munozcarreno;
+
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
@@ -7,8 +7,25 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 /*
-DESCRIPCIÓN DE LA CLASE: esta clase tiene el objetivo de almacenar métodos que
+descricion clase: esta clase tiene el objetivo de almacenar métodos que
 ayuden al desarrollo del programa.
+
+atributos: sin atributos
+
+metodos incorporados:
+
+- obtenerFecha
+- EliminarArchRep
+- UnirListasDeArchivos
+- UnirArchivosEspecificos
+- UnirConjuntoDeCommits
+- BorrarCommitRep
+- ObtenerArchivosDeRemote
+- ComandoPermitido
+- mostrarComandos (metodo extra que permite ver el el transcurso de los comandos incorporados,
+                   para activarlo, se debe sacar los 2 slash (comentario) que se encuentran en la clase Main,
+                   especificamente en el switch para la selecion de los comandos).
+
 */
 public class MetodosExtras {
     
@@ -23,6 +40,7 @@ public class MetodosExtras {
      * SELECTOR DE FECHA Y HORA
      * @return String
      */
+     //descripcon metodo: El metodo tiene como objetivo retornar la fecha y hora actual.
     public static String obtenerFecha(){
         LocalDateTime Fecha = LocalDateTime.now();
         DateTimeFormatter SET = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss");
@@ -35,10 +53,12 @@ public class MetodosExtras {
      * @param Archivos
      * @return ArrayList
      */
+    // descripcion metodo: El objetivo de este metodo es devolver una lista sin archivos duplicados
+    // tomando como filtro el nombre del archivo.
     public static ArrayList<ArchTextoPlano> EliminarArchRep(ArrayList<ArchTextoPlano> Archivos){
         //ITERADOR
         int i,j;
-        //SI EL ACTIVADOR ES MAYOR A 1 => QUE EL ARCHIVOS ESTÁ MAS DE UNA VEZ
+        //SI EL ACTIVADOR ES MAYOR A 1 => QUE EL ARCHIVOS ESTA MAS DE UNA VEZ
         int activador=0;
         ArrayList<ArchTextoPlano> NuevosArchivos = new ArrayList<>();
         //OBJETO DE TIPO ARCHIVO
@@ -78,6 +98,8 @@ public class MetodosExtras {
      * @param Lista2
      * @return ArrayList
      */
+     // descripcion metodo: Dada dos lista de de tipo ArrayList<ArchTextoPlano>, el metodo retorna una lista nueva
+     // con las dos listas concatenadas.
     public static ArrayList<ArchTextoPlano> UnirListasDeArchivos(ArrayList<ArchTextoPlano> Lista1, ArrayList<ArchTextoPlano> Lista2){
         //ITERADOR
         int i=0;
@@ -103,7 +125,8 @@ public class MetodosExtras {
      * @param cantidadMax
      * @return ArrayList
      */
-    public static ArrayList<ArchTextoPlano> UnirArchivosEspecificos(ZonasDeTrabajo Zonas, int tranferir, int cantidadMax){
+    // descripcion metodo: Este metodo tiene como fin, pasar un(os) archivo especifico (de tipo ArchTextoPlano) a la zona index.
+     public static ArrayList<ArchTextoPlano> UnirArchivosEspecificos(ZonasDeTrabajo Zonas, int tranferir, int cantidadMax){
         Scanner S = new Scanner(System.in);
         
         //ITERADOR
@@ -139,7 +162,7 @@ public class MetodosExtras {
     
             //SE ACTUALIZA LA ZONA DE TRABAJO
             Zonas.setIndex(NIndex);
-            // QUE tranferir DISMINUYA EN 1 SIGNIFICA QUE YA SE PASO UN
+            // QUE TRANSFERIR DISMINUYA EN 1 SIGNIFICA QUE YA SE PASO UN
             //ARCHIVO DE WORKPSACE A INDEX
             tranferir-=1;
                  
@@ -154,6 +177,7 @@ public class MetodosExtras {
      * @param conj2
      * @return ArrayList<>
      */
+    // descripcion metodo: El metodo concatena dos lista de commit y retorna una nueva lista tipo Commit.
     public static ArrayList<Commit> UnirConjuntoDeCommits(ArrayList<Commit> conj1, ArrayList<Commit> conj2){
         
         int i=0;
@@ -171,11 +195,18 @@ public class MetodosExtras {
         return NuevoConjuntoCommits;
     }
     
-    
+    /**
+    * MODIFICADOR
+    * @param Lcommits
+    * @return ArrayList<>
+    */
+    // descripcion metodo: El metodo tiene como objetivo eliminar aquellos commits repetidos,
+    // tomando como filtro el autor del commit, el mensaje del commit, la cantidad de archivos, 
+    // los nombres de los archivos y su contenido.
     public static ArrayList<Commit> BorrarCommitRep(ArrayList<Commit> Lcommits){
         //ITERADOR
         int i,j;
-        //SI EL ACTIVADOR ES MAYOR A 1 => QUE EL ARCHIVOS ESTÁ MAS DE UNA VEZ
+        //SI EL ACTIVADOR ES MAYOR A 1 => QUE EL ARCHIVOS ESTA MAS DE UNA VEZ
         int activador=0;
         ArrayList<Commit> NuevosL = new ArrayList<>();
         //OBJETO DE TIPO ARCHIVO
@@ -281,7 +312,6 @@ public class MetodosExtras {
                                         if(contenido1.equals(contenido2)){
                                             //llave AUMENTA EN +1
                                             llave +=1;
-                                            System.out.printf("VALOR DE llave ----> %d\n\n",llave);
                                         }
                                     }
                                 }
@@ -291,7 +321,6 @@ public class MetodosExtras {
                             //LOS ARCHIVOS QUE CONTIENE EL COMMIT SON DISTINTOS
                             if(llave == largoListas){
                                 activador+=1;
-                                System.out.printf("VALOR DE activador ----> %d\n\n",activador);
                             }
                             llave=0;
                         }
@@ -312,6 +341,15 @@ public class MetodosExtras {
     }
     
     
+
+    
+    // descripcion metodo: El metodo tiene como objetivo obtener todos los archivos de cada
+    // commit de la lista ingresada ListaCommits (de tipo ArrayList<Commit>)
+    /**
+     * SELECTOR
+     * @param ListaCommits
+     * @return ArrayList
+     */
     public static ArrayList<ArchTextoPlano> ObtenerArchivosDeRemote(ArrayList<Commit> ListaCommits){
         //SE CREA UN OBJETO DE TIPO ArrayList<ArchTextoPlano> PARA GUARDAR TODOS
         //LOS ARCHIVOS ALMACENADOS EN REMOTE REPOSITORY
@@ -330,7 +368,7 @@ public class MetodosExtras {
         
         //FOR QUE RECORRE TODA LA LISTA DE COMMITS
         for(i=0;i<ListaCommits.size();i++){
-            //SE OPBTIENE UN COMMIT
+            //SE OBTIENE UN COMMIT
             commit = ListaCommits.get(i);
             //SE OBTIENE LA LISTA DE ARCHIVOS DEL COMMIT
             archTemp = commit.getArchivosCommit();
@@ -347,17 +385,19 @@ public class MetodosExtras {
      * @param comando
      * @return boolean
      */
+    // descripcion metodo: Este metodo mas que aportar al simulador, se le atribuye la mision de
+    // analizar los comandos ingresados por el usuario y verificar si son validos en aquel instante.
     public static boolean ComandoPermitido(ArrayList<String> ListaComandos,String comando){
        
         boolean ejecutar = true;
-        //SE PROCEDE A VERIFICAR QUE EL COMANDO "comando" SELECCIONADO SEA VÁLIDO
+        //SE PROCEDE A VERIFICAR QUE EL COMANDO "comando" SELECCIONADO SEA VALIDO
         
         //COMANDO Add _____________________
         
-        //STRING QUE ALMACENARÁ EL ÚLTIMO COMANDO EJECUTADO
+        //STRING QUE ALMACENARA EL ULTIMO COMANDO EJECUTADO
         String C;
         
-        //ENTERO QUE ALMACENA EL TAMAÑO DE LA LISTA ListaComandos
+        //ENTERO QUE ALMACENA EL TAMANO DE LA LISTA ListaComandos
         int largo;
         //CASO BORDE
         if(ListaComandos.isEmpty() && comando.equals("CargarArchivosWorkspace->")){
@@ -442,7 +482,13 @@ public class MetodosExtras {
         return ejecutar;
     }
     
-    
+   
+    //descripcion metodo: El metodo tiene como objetivo mostrar el transcurso de los 
+    // comandos ejecutador por el usuario.
+    /**
+     * SELECTOR
+     * @param LineaDeTiempo 
+     */
     public static void mostrarComandos(ArrayList<String> LineaDeTiempo){
         int i=0;
         for(i=0;i<LineaDeTiempo.size();i++){

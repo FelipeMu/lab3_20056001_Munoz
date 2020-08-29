@@ -1,5 +1,6 @@
-
 package lab_git_20056001_munozcarreno;
+
+
 
 import java.util.ArrayList;
 import java.util.InputMismatchException;
@@ -12,11 +13,25 @@ comandos ingresados por el usuario a través del menú principal. Esta clase
 contiene los métodos:
 1) agregar archivos workspace
 2) gitInit
-3)gitAdd
-4)gitCommit
-5)gitPull
-6)gitPush
-7)gitStatus
+3) gitAdd
+4) gitCommit
+5) gitPull
+6) gitPush
+7) gitStatus
+
+atributos: sin atributos.
+
+metodos incorporados:
+
+- AgregarArchivo
+- gitAdd
+- gitCommit
+- gitPush
+- gitPull
+- gitStatus
+- gitLog
+
+
 */
 public class Git {
     
@@ -37,6 +52,9 @@ public class Git {
      * @param autor
      * @return ZonasDeTrabajo 
      */
+    // descripcion metodo: la finalidad del metodo es inicializar el repositorio,
+    // generando el nombre del repositorio, el autor, la fecha de creacion y las
+    // 4 zonas de trabajo inicializadas.
     public static ZonasDeTrabajo gitInit(String nombreRep, String autor){
         
         String FechaCreacion = MetodosExtras.obtenerFecha();
@@ -50,6 +68,8 @@ public class Git {
      * @param Zonas
      * @return ZonasDeTrabajo
      */
+    // descripcion metodo: El objetivo de este metodo es agregar los archivos ingresados por el
+    // usuario a la zona workspace
     public static ZonasDeTrabajo AgregarArchivo(ZonasDeTrabajo Zonas){
         //atributos u objetos definidos
         String nombreArchivo;
@@ -99,6 +119,8 @@ public class Git {
      * @param Zonas
      * @return ZonasDeTrabajo
      */
+    // descripcion metodo: El obejtivo de este metodo es pasar la cantidad total de archivos almacenados en
+    // workspace o archivos especificos a la zona index.
     public static ZonasDeTrabajo gitAdd(ZonasDeTrabajo Zonas){
         Scanner S = new Scanner(System.in);
         int op=0;
@@ -106,17 +128,17 @@ public class Git {
             System.out.println("**cantidad de archivos a ingresar**\n");
             System.out.println("(1) Todos los archivos.");
             System.out.println("(2) Archivos especificos.");
-            System.out.printf("opción:  ");
+            System.out.printf("opcion:  ");
           
             
             try{
                
                op = S.nextInt();
                if(op < 1 || op > 2){
-                   System.out.println(" ! Error, introduzca una opción válida.\n");
+                   System.out.println(" ! Error, introduzca una opcion valida.\n");
                 }
            } catch(InputMismatchException e){
-               System.out.println("! Error, introduzca una opción válida.\n");
+               System.out.println("! Error, introduzca una opcion valida.\n");
                S.next();
             
            }
@@ -169,7 +191,7 @@ public class Git {
                             System.out.println(" ! Error, no existe tal cantidad de archivos en Workspace.\n");
                         }
                      } catch(InputMismatchException e){
-                         System.out.println("! Error, introduzca una opción válida.\n");
+                         System.out.println("! Error, introduzca una opcion valida.\n");
                          S.next();
               
                        }
@@ -194,6 +216,9 @@ public class Git {
      * @param Zonas
      * @return ZonasDeTrabajo
      */
+    // descripcion metodo: El metodo tiene como objetivo generar un commit con los archivos
+    // almacenados en la zona index y transferirlos a la zona local repository, dejando la zona index
+    // vacia nuevamente.
     public static ZonasDeTrabajo gitCommit(ZonasDeTrabajo Zonas){
         Scanner S = new Scanner(System.in);
         //SE PROCEDE A OBTENER EL NOMBRE DEL AUTOR DEL REPOSITORIO
@@ -273,6 +298,8 @@ public class Git {
      * @param Zonas
      * @return ZonasDeTrabajo
      */
+    // descripcion metodo: El metodo tiene como objetivo copiar todos los commit almacenados en local
+    // repository y pasarlos a la zona remote repository, al mismo tiempo se eliminan los commits duplicados.
     public static ZonasDeTrabajo gitPush(ZonasDeTrabajo Zonas){
   
         //SE PROCEDE A OBTENER EL OBJETO DE TIPO localRepository 
@@ -312,6 +339,9 @@ public class Git {
      * @param Zonas
      * @return ZonasDeTrabajo
      */
+    // descripcion metodo: El metodo tiene como finalidad traer las lista de commit
+    // de remote repository a local repository, al mismo tiempo se deben llevar todos los archivos
+    // almacenados en cada commit a la zona workspace.
     public static ZonasDeTrabajo gitPull(ZonasDeTrabajo Zonas){
         //SE PROCEDE A CREAR UN OBJETO DE TIPO ArrayList<ArchTextoPlano> PARA
         //GUARDAR TODOS LOS ARCHIVOS QUE EXISTEN EN REMOTE REPOSITORY
@@ -349,6 +379,11 @@ public class Git {
      * 
      * @param Zonas 
      */
+    // descripcion metodo: El metodo tiene como finalidad mostrar cierta informacion
+    // del repositorio, como el nombre del repositorio, el autor del repositorio, la 
+    // cantidad de archivos almacenados en workspace e index, la cantidad de commit ubicados
+    // en la zona local repository y informar si la zona remote repository cuenta con los ultimos
+    // cambios generados por el usuario.
     public static void gitStatus(ZonasDeTrabajo Zonas){
         
         //SE PROCEDE A MOSTRAR EL NOMBRE DEL REPOSITORIO Y SU AUTOR
@@ -362,7 +397,7 @@ public class Git {
         //AHORA DE DEBE OBTENER LA CANTIDAD DE ARCHIVOS QUE POSEE WORKSPACE E
         //INDEX Y LA CANTIDAD DE COMMIT EN LOCAL REPOSITORY
         
-        //SE CRRAN LAS 3 VARIBLES PARA ACUMULAR LAS RESPECTIVAS CANTIDADES
+        //SE CREAN LAS 3 VARIBLES PARA ACUMULAR LAS RESPECTIVAS CANTIDADES
         int cantArch_W;
         int cantArch_I;
         int cantCommits_Local;
@@ -428,13 +463,15 @@ public class Git {
      * 
      * @param Zonas 
      */
+     // descripcion metodo: El objetivo de este metodo es mostrar los ultimos 5 commits
+     // alamcenados en la zona local repository, si existen menos se muestra dichos commits.
     public static void gitLog(ZonasDeTrabajo Zonas){
-        //SE DEBEN MOSTRAR TODOS LOS COMMITS (MÁX 5 COMMITS)
+        //SE DEBEN MOSTRAR TODOS LOS COMMITS (MAX 5 COMMITS)
 
  
         //SE CREA VARIABLE PARA ALMACENAR LA CANTIDAD DE COMMIT ALMACENADOS
         int cantCommits;
-        //VARIABLE PARA EL NÚMERO MÁXIMO DE COMMITS
+        //VARIABLE PARA EL NUMERO MAXIMO DE COMMITS
         int max = 5;
         
         //SE PROCEDE A OBTENER EL OBJETO TIPO LocalRepository
@@ -464,7 +501,7 @@ public class Git {
         //SE DEFINE OBJETO TIPO ArchTextoPlano
         ArchTextoPlano archivo;
         
-        System.out.println("###ÚLTIMOS 5 COMMITS EN LOCAL REPOSITORY###\n");
+        System.out.println("###ULTIMOS 5 COMMITS EN LOCAL REPOSITORY###\n");
         while(cantCommits>0 && max>0){
             
             //SE OBTIENE EL COMMIT EN LA POSICIÓN i

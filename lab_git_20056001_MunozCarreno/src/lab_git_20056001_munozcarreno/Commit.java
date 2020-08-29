@@ -1,7 +1,25 @@
-
 package lab_git_20056001_munozcarreno;
 
+
 import java.util.ArrayList;
+
+/*
+descripcion clase: Esta clase funciona como el constructor de un commit.
+
+atributos: autor (autor del commit), tiempo (fecha y hora de creacion del commit),
+mensaje (es el mensaje descriptivo) y archivosCommit (Es una lista de tipo
+Arraylist<ArchTextoPlano>, donde cada archivo es de tipo ArchTetoPlano.
+
+metodos incorporados:
+
+- sin metodos.
+
+
+
+
+
+
+*/
 
 public class Commit {
     //ATRIBUTOS U OBJETOS

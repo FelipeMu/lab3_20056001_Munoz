@@ -1,9 +1,57 @@
-
 package lab_git_20056001_munozcarreno;
+
 
 import java.util.ArrayList;
 import java.util.InputMismatchException;
 import java.util.Scanner;
+
+/*
+REPRESENTACION:
+
+El repositorio será representado a traves de una clase conformada por dintintas clases,
+en donde cada una de estas clases es un constructor de cada zona de trabajo. En otras
+repositorio esta conformado por:
+
+-> [<nombre repositorio>, <nombre autor>, fecha creacion. class "zonas de trabajo"]
+
+la clase zona de trabajo, para este programa denominada con el nombre "ZonasDeTrabajo", en 
+su constructor inicializa las 4 zonas de trabajo, workspace, index, local repository y 
+remote repository. Cada unas de estas zonas corresponde a una clase unica.
+
+zona workspace:
+
+- Es una lista de tipo ArrayList<ArchTextoPlano>, donde el objeto ArchTextoPlano, corresponde
+  tambien a una clase con los atributos: nombre de archivo, autor del archivo y fecha de creacion.
+
+
+
+zona index:
+
+- Es una lista de tipo ArrayList<ArchTextoPlano>, donde el objeto ArchTextoPlano, corresponde
+  tambien a una clase con los atributos: nombre de archivo, autor del archivo y fecha de creacion.
+
+
+zona local repository: 
+
+- La zona local repository es una lista de tipo ArrayList<Commit>, donde el objeto Commit
+  corresponde a una clase con distintos atributos, tales como, autor del commit, fecha del
+  commit, un mensaje descriptivo del commit y una lista de tipo ArrayList<ArchTextoPlano>.
+
+zona remote repository:
+
+- La zona remote repository es una lista de tipo ArrayList<Commit>, donde el objeto Commit
+  corresponde a una clase con distintos atributos, tales como, autor del commit, fecha del
+  commit, un mensaje descriptivo del commit y una lista de tipo ArrayList<ArchTextoPlano>.
+
+
+*/
+
+
+
+
+
+
+
 
 
 public class Main {
@@ -17,7 +65,7 @@ public class Main {
         String autor;
        //se procede a ingresar el nombre del nuevo repositorio junto con el 
        //nombre del autor
-       System.out.println("###SIMULACIÓN DE GIT###");
+       System.out.println("###SIMULACION DE GIT###");
        System.out.printf("(*) Ingrese el nombre del repositorio: ");
        nombreRep = S.nextLine();
        System.out.println();
@@ -25,20 +73,21 @@ public class Main {
        autor = S.nextLine();
        System.out.println();
        
-       //SE HACE USO DEL MÉTODO gitInit()
+       //SE HACE USO DEL METODO gitInit()
        ZonasDeTrabajo Zonas = Git.gitInit(nombreRep,autor);
        System.out.println(Zonas.toString());
+       System.out.println();
        
        
-       //Se crea una lista tipo Strinb
+       //Se crea una lista tipo String
        ArrayList<String> COMANDOS = new ArrayList<>();
        
        
        int opcion=0;
-       //SE PROCEDE A MOSTRAR EL MENU A TRAVÉS DE UN BUCLE
+       //SE PROCEDE A MOSTRAR EL MENU A TRAVES DE UN BUCLE
        do{
            System.out.println();
-           System.out.println("###SIMULACIÓN DE GIT###");
+           System.out.println("###SIMULACION DE GIT###");
            System.out.println("Escoja una opcion: ");
            System.out.println("1. add");
            System.out.println("2. commit");
@@ -58,10 +107,10 @@ public class Main {
                
                opcion = S.nextInt();
                if(opcion < 1 || opcion > 8){
-                   System.out.println(" ! Error, introduzca una opción válida.\n");
+                   System.out.println(" ! Error, introduzca una opcion valida.\n");
                 }
            } catch(InputMismatchException e){
-               System.out.println("! Error, introduzca una opción válida.\n");
+               System.out.println("! Error, introduzca una opcion valida.\n");
                S.next();
               
              }
@@ -82,12 +131,13 @@ public class Main {
                     if(permitir){
                         COMANDOS.add("Add->");
                         ZonasDeTrabajo ZonasNueva1 = Git.gitAdd(Zonas);
+			System.out.println();
                         System.out.println(ZonasNueva1.toString());
                         System.out.println();
-                        MetodosExtras.mostrarComandos(COMANDOS);
+                        //MetodosExtras.mostrarComandos(COMANDOS);
                     }
                     else{
-                        System.out.println("Si por casualidad realizó un Push, es necesario que realice un Pull para ejecutar le comando Add,\nsi ese no es el caso, entonces agregue archivos a la zona workspace.\n");
+                        System.out.println("Si por casualidad realizo un Push, es necesario que realice un Pull para ejecutar le comando Add,\nsi ese no es el caso, entonces agregue archivos a la zona workspace.\n");
                     }
                     
 
@@ -98,9 +148,10 @@ public class Main {
                     if(permitir){
                         COMANDOS.add("Commit->");
                         ZonasDeTrabajo ZonasNueva2 = Git.gitCommit(Zonas);
+			System.out.println();
                         System.out.println(ZonasNueva2.toString());
                         System.out.println();
-                        MetodosExtras.mostrarComandos(COMANDOS);
+                        //MetodosExtras.mostrarComandos(COMANDOS);
                     }
                     else{
                         System.out.println("Por favor, realice el comando Add antes de crear un Commit.");
@@ -112,9 +163,10 @@ public class Main {
                     if(permitir){
                         COMANDOS.add("Pull->");
                         ZonasDeTrabajo ZonasNueva3 = Git.gitPull(Zonas);
+			System.out.println();
                         System.out.println(ZonasNueva3.toString());
                         System.out.println();
-                        MetodosExtras.mostrarComandos(COMANDOS);
+                        //MetodosExtras.mostrarComandos(COMANDOS);
                     }
                     else{
                         System.out.println("Por favor, realice el comando Push antes de ejecutar un Pull.");
@@ -126,9 +178,10 @@ public class Main {
                     if(permitir){
                         COMANDOS.add("Push->");
                         ZonasDeTrabajo ZonasNueva4 = Git.gitPush(Zonas);
+			System.out.println();
                         System.out.println(ZonasNueva4.toString());
                         System.out.println();
-                        MetodosExtras.mostrarComandos(COMANDOS);
+                        //MetodosExtras.mostrarComandos(COMANDOS);
                     }
                     else{
                         System.out.println("por favor, genere un Commit antes de realizar un Push.");
@@ -149,9 +202,10 @@ public class Main {
                     if(permitir){
                         COMANDOS.add("CargarArchivosWorkspace->");
                         ZonasDeTrabajo ZonasNueva7 = Git.AgregarArchivo(Zonas);
+			System.out.println();
                         System.out.println(ZonasNueva7.toString());
                         System.out.println();
-                        MetodosExtras.mostrarComandos(COMANDOS);
+                        //MetodosExtras.mostrarComandos(COMANDOS);
                     }
                     else{
                         System.out.println("Para seguir cargando archivos a workspace, por favor realice un Pull");
@@ -164,6 +218,7 @@ public class Main {
                     System.out.println("Hasta luego.\n");
                     break;     
             } 
+            
             // SE VERIFICA SI EL USUARIO DECIDIÓ SALIR DEL SIMULADOR
             if(opcion != 8){
                 opcion=0;

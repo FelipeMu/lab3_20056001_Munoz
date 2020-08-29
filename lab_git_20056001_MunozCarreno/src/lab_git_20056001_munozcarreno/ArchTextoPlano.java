@@ -1,9 +1,20 @@
-
 package lab_git_20056001_munozcarreno;
+
 
 import java.util.ArrayList;
 
+/*
+descripcion clase: Esta clase tiene como objetivo creaar un objeto de tipo ArchTextoPlano
 
+atributos: nombre (nombre del autor del texto), fechahora (fecha creacion del archivo) y
+contenido (es el contenido que se encuentra al interior del archivo).
+
+metodos incorporados:
+
+- mostrarInformacion : metodo que muestra toda la informacion acerca de un archivo.
+- mostrarNombres: metodo que imprime todos los nombres de una lista de archivos.
+
+*/
 
 
 public class ArchTextoPlano {
@@ -31,7 +42,7 @@ public class ArchTextoPlano {
     //METODOS
     
     /**
-     * METODO PARA MOSTRAR LA INFORMACIÓN DE UN ARCHIVO 
+     * METODO PARA MOSTRAR LA INFORMACIÓN DE UN ARCHIVO.
      */    
     public void mostrarInformacion(){
         System.out.println("----informacion de archivo----");
@@ -41,6 +52,9 @@ public class ArchTextoPlano {
         
     }
      
+    /**
+     * METODO PARA MOSTRAR LOS NOMBRES DE ARCHIVOS ALMACENADOS EN UNA LISTA DE ARCHIVOS.
+     */   
     public static void MostrarNombres(ArrayList<ArchTextoPlano> L){
         int i=0;
         //SE DEFINE UN OBJETO DE TIPO ArchTextoPlano

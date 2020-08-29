@@ -1,6 +1,30 @@
 
 package lab_git_20056001_munozcarreno;
 
+/*
+descripcion clase: Esta clase es el constructor principal del TDA, inicializa
+todas las zonas de trabajo (workspace, index, local y remote repository).
+
+
+atributos:
+
+nombreRep (nombre del repositorio)
+nombreAutor (nombre del autor del repositorio)
+FechaCreacion (fecha creacion del repositorio)
+
+workspace (objeto de tipo Workspace)
+index (objeto de tipo Index)
+localRepository (objeto de tipo LocalRepository)
+remoteRepository (objeto de tipo RemoteRepository)
+
+metodos incorporados: sin metodos.
+
+
+
+
+*/
+
+
 
 public class ZonasDeTrabajo {
     //se definen los atributos de la clase y los objetos (zonas de trabajo)
@@ -146,6 +170,6 @@ public class ZonasDeTrabajo {
 
     @Override
     public String toString() {
-        return "ZonasDeTrabajo[" + "nombreRep= " + nombreRep + ", nombreAutor= " + nombreAutor + ", FechaCreación= " + FechaCreacion + ",\n workspace" + workspace + ",\n index" + index + ",\n localRepository" + localRepository + ",\n remoteRepository" + remoteRepository + ']';
+        return "ZonasDeTrabajo[" + "nombreRep= " + nombreRep + ", nombreAutor= " + nombreAutor + ", FechaCreacion= " + FechaCreacion + ",\n workspace" + workspace + ",\n index" + index + ",\n localRepository" + localRepository + ",\n remoteRepository" + remoteRepository + ']';
     }
 }

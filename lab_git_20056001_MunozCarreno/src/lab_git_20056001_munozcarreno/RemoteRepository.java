@@ -1,8 +1,18 @@
-
 package lab_git_20056001_munozcarreno;
+
 
 import java.util.ArrayList;
 
+
+/*
+descripcion clase: Esta clase funciona como el constrcutor de la zona remote repository.
+
+atributos: CommitsEnRemote (lista de tipo ArrayList<Commit>)
+
+metodos incorporados: sin metodos.
+
+
+*/
 
 public class RemoteRepository {
     //atributos u objetos
