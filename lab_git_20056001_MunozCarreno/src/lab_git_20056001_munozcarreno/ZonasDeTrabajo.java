@@ -1,6 +1,9 @@
 
 package lab_git_20056001_munozcarreno;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+
 /*
 descripcion clase: Esta clase es el constructor principal del TDA, inicializa
 todas las zonas de trabajo (workspace, index, local y remote repository).
@@ -17,7 +20,10 @@ index (objeto de tipo Index)
 localRepository (objeto de tipo LocalRepository)
 remoteRepository (objeto de tipo RemoteRepository)
 
-metodos incorporados: sin metodos.
+metodos incorporados:
+
+- obtenerFecha
+
 
 
 
@@ -43,15 +49,33 @@ public class ZonasDeTrabajo {
      * @param autor 
      * @param FechaHora 
      */
-    public ZonasDeTrabajo(String nombreRep, String autor, String FechaHora) {
+    public ZonasDeTrabajo(String nombreRep, String autor) {
         this.nombreRep = nombreRep;
         this.nombreAutor = autor;
-        this.FechaCreacion = MetodosExtras.obtenerFecha();
+        this.FechaCreacion = obtenerFecha();
         this.workspace = new Workspace();
         this.index = new Index();
         this.localRepository = new LocalRepository();
         this.remoteRepository = new RemoteRepository();
     }
+    
+    
+    //METODOS
+    
+    /**
+     * SELECTOR DE FECHA Y HORA
+     * @return String
+     */
+     //descripcon metodo: El metodo tiene como objetivo retornar la fecha y hora actual.
+    public static String obtenerFecha(){
+        LocalDateTime Fecha = LocalDateTime.now();
+        DateTimeFormatter SET = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss");
+        String formattedDate = Fecha.format(SET);
+        return formattedDate;
+    }
+    
+    
+    
     
     //GETTERS Y SETTERS
 

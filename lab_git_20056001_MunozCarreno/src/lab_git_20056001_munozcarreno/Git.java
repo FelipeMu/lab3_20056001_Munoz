@@ -57,8 +57,7 @@ public class Git {
     // 4 zonas de trabajo inicializadas.
     public static ZonasDeTrabajo gitInit(String nombreRep, String autor){
         
-        String FechaCreacion = MetodosExtras.obtenerFecha();
-        ZonasDeTrabajo NuevasZonas = new ZonasDeTrabajo(nombreRep,autor,FechaCreacion);
+        ZonasDeTrabajo NuevasZonas = new ZonasDeTrabajo(nombreRep,autor);
         return NuevasZonas;
     }
       
@@ -90,7 +89,7 @@ public class Git {
         System.out.printf("Ingrese el contenido del archivo: ");
         Contenido = S.nextLine();
         //Se incorpora la fecha y hora de creación con la clase MetodosExtras
-        FechaHora = MetodosExtras.obtenerFecha();
+        FechaHora = Workspace.obtenerFecha();
         
   
         //SE CREA UN OBJETO DE TIPO ArchTextoPlano
@@ -100,7 +99,7 @@ public class Git {
         
         
         //SE CREA UN NUEVO OBJETO DE TIPO ArrayList<ArchTextoPlano>
-        ArrayList<ArchTextoPlano> Archivos_Actualizados = MetodosExtras.EliminarArchRep(ArchivosDelWorkspace);
+        ArrayList<ArchTextoPlano> Archivos_Actualizados = ArchTextoPlano.EliminarArchRep(ArchivosDelWorkspace);
        
         
         
@@ -162,7 +161,7 @@ public class Git {
             //CASO EN QUE SE DESEA INGRESAR TODOS LOS ARCHIVOS
             case 1:
                 //SE PASAN TODOS LOS ARCHIVOS DE WORKSPACE A INDEX
-                ArrayList<ArchTextoPlano> NuevoIndex = MetodosExtras.UnirListasDeArchivos(ListaArchivos_W, ListaArchivos_I);
+                ArrayList<ArchTextoPlano> NuevoIndex = ArchTextoPlano.UnirListasDeArchivos(ListaArchivos_W, ListaArchivos_I);
                 //SE OBTIENE UN OBJETO TEMPORAL DE LAZONA INDEX
                 Index IndexAuxiliar = Zonas.getIndex();
                 //SE ACTUALIZA LA ZONA INDEX
@@ -200,8 +199,8 @@ public class Git {
                 //EN ESTE MOMENTO EN NÚMERO DE ARCHIVOS INGRESADOS POR EL 
                 //USUARIO ES MENOR IGUAL A LA CANTIDAD QUE EXISTE EN LA ZONA
                 //WORKSPACE, LUEGO SE PROCEDE A TRANSFERIRLOS.
-                ArrayList<ArchTextoPlano> N_INDEX = MetodosExtras.UnirArchivosEspecificos(Zonas,transferir,cantidadArch);
-                ArrayList<ArchTextoPlano> N_INDEX2 = MetodosExtras.EliminarArchRep(N_INDEX);
+                ArrayList<ArchTextoPlano> N_INDEX = ArchTextoPlano.UnirArchivosEspecificos(Zonas,transferir,cantidadArch);
+                ArrayList<ArchTextoPlano> N_INDEX2 = Index.EliminarArchRep(N_INDEX);
                 Index IndexTemporal = Zonas.getIndex();
                 
                 IndexTemporal.setArchivos_Index(N_INDEX2);
@@ -229,7 +228,7 @@ public class Git {
         
         //SE OBTIENE LA FECHA DE CREACIÓN DEL COMMIT
         String FechaCommit;
-        FechaCommit = MetodosExtras.obtenerFecha();
+        FechaCommit = Commit.obtenerFecha();
         //SE CREA UN ATRIBUTO PARA GUARDAR EL MENSAJE
         String Mensaje;
         //SE LE INDICA AL USUARIO QUE INGRESE UN MENSAJE PARA EL COMMIT
@@ -277,7 +276,7 @@ public class Git {
         ArrayList<Commit> nuevaListaC = new ArrayList<>();
         //EN nuevaLista SE ALMACENA LA LISTA DE COMMITS PERTENECIENTE A LA
         //ZONA LOCAL REPOSITORY (CON COMMMITS UNICOS)
-        nuevaListaC = MetodosExtras.BorrarCommitRep(commitsARevisar);
+        nuevaListaC = Commit.BorrarCommitRep(commitsARevisar);
         
         //SE CREA UN NUEVO OBJETO DE TIPO LocalRepository
         LocalRepository LocalDef = new LocalRepository();
@@ -317,11 +316,11 @@ public class Git {
         ArrayList<Commit> NuevoConjuntoCommits = new ArrayList<>();
         
         //SE PROCEDE A UNIR LOS COMMITS DE LOCAL REPOSITORY Y LOCAL REPOSITORY
-        NuevoConjuntoCommits = MetodosExtras.UnirConjuntoDeCommits(commitDeLocal, commitDeRemote);
+        NuevoConjuntoCommits = Commit.UnirConjuntoDeCommits(commitDeLocal, commitDeRemote);
         //SE CREA UN OBJETO DE TIPO ArrayList<Commit>
         ArrayList<Commit> NuevoConjuntoCommits2 = new ArrayList<>();
         //SE PROCEDE A ELIMINAR LOS REPETIDOS
-        NuevoConjuntoCommits2 = MetodosExtras.BorrarCommitRep(NuevoConjuntoCommits);
+        NuevoConjuntoCommits2 = Commit.BorrarCommitRep(NuevoConjuntoCommits);
 
         
         // SE CREA UN NUEVO OBJETO DE TIPO RemoteRepository
@@ -353,7 +352,7 @@ public class Git {
         ArrayList<Commit> CommitsRemote = remote.getCommitsEnRemote();
         
         //SE OBTIENE UNA LISTA CON TODOS LOS ARCHIVOS DE REMOTE REPOSITORY
-        TodosLosArchivosR = MetodosExtras.ObtenerArchivosDeRemote(CommitsRemote);
+        TodosLosArchivosR = RemoteRepository.ObtenerArchivosDeRemote(CommitsRemote);
         
         //SE PROCEDE A ELIMINAR LOS REPETIDOS
         
@@ -361,7 +360,7 @@ public class Git {
         ArrayList<ArchTextoPlano> NuevosArchivosUnicos = new ArrayList<>();
         
         //SE OBTIENE UNA LISTA DE ARCHIVOS SIN REPETICIONES
-        NuevosArchivosUnicos = MetodosExtras.EliminarArchRep(TodosLosArchivosR);
+        NuevosArchivosUnicos = ArchTextoPlano.EliminarArchRep(TodosLosArchivosR);
         
         //SE ACTUALIZA LA ZONA WORKSPACE
         Workspace workspace = Zonas.getWorkspace();

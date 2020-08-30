@@ -1,6 +1,8 @@
 package lab_git_20056001_munozcarreno;
 
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 
 /*
@@ -9,7 +11,10 @@ repository.
 
 atributos: Archivos_Workspace (lista de tipo ArrayList<ArchTextoPlano>)
 
-metodos incorporados: sin metodos.
+metodos incorporados: 
+
+- obtenerFecha
+- 
 
 
 */
@@ -30,7 +35,17 @@ public class Workspace {
     
     //MÉTODOS
     
-   
+   /**
+     * SELECTOR DE FECHA Y HORA
+     * @return String
+     */
+     //descripcon metodo: El metodo tiene como objetivo retornar la fecha y hora actual.
+    public static String obtenerFecha(){
+        LocalDateTime Fecha = LocalDateTime.now();
+        DateTimeFormatter SET = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss");
+        String formattedDate = Fecha.format(SET);
+        return formattedDate;
+    }
     
     
     
