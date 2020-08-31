@@ -14,7 +14,7 @@ atributos: Archivos_Workspace (lista de tipo ArrayList<ArchTextoPlano>)
 metodos incorporados: 
 
 - obtenerFecha
-- 
+- toString
 
 
 */

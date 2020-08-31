@@ -11,7 +11,9 @@ repository (constructor de la zona local repository)
 atributos: CommitsEnLocal (lista de tipo ArrayList<Commit>, que contiene todos
 los commit realizados por el usuario)
 
-metodos incorporados: sin metodos.
+metodos incorporados: 
+
+- toString
 
 
 */

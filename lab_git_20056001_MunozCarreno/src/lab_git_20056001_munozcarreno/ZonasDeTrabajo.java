@@ -11,9 +11,6 @@ todas las zonas de trabajo (workspace, index, local y remote repository).
 
 atributos:
 
-nombreRep (nombre del repositorio)
-nombreAutor (nombre del autor del repositorio)
-FechaCreacion (fecha creacion del repositorio)
 
 workspace (objeto de tipo Workspace)
 index (objeto de tipo Index)
@@ -22,8 +19,7 @@ remoteRepository (objeto de tipo RemoteRepository)
 
 metodos incorporados:
 
-- obtenerFecha
-
+- toString
 
 
 
@@ -34,25 +30,18 @@ metodos incorporados:
 
 public class ZonasDeTrabajo {
     //se definen los atributos de la clase y los objetos (zonas de trabajo)
-    private String nombreRep;
-    private  String nombreAutor;
-    private String FechaCreacion;
+
     
     private Workspace workspace;
     private Index index;
     private LocalRepository localRepository;
     private RemoteRepository remoteRepository;
     
-    /**
-     * CONSTRUCTOR
-     * @param nombreRep
-     * @param autor 
-     * @param FechaHora 
-     */
-    public ZonasDeTrabajo(String nombreRep, String autor) {
-        this.nombreRep = nombreRep;
-        this.nombreAutor = autor;
-        this.FechaCreacion = obtenerFecha();
+   /**
+    * CONSTRUCTOR
+    */
+    public ZonasDeTrabajo() {
+
         this.workspace = new Workspace();
         this.index = new Index();
         this.localRepository = new LocalRepository();
@@ -79,53 +68,7 @@ public class ZonasDeTrabajo {
     
     //GETTERS Y SETTERS
 
-    /**
-     * SELECTOR
-     * @return String 
-     */
-    public String getNombreRep() {
-        return nombreRep;
-    }
 
-    /**
-     * MODIFICADOR
-     * @param nombreRep 
-     */
-    public void setNombreRep(String nombreRep) {
-        this.nombreRep = nombreRep;
-    }
-
-    /**
-     * SELECTOR
-     * @return String
-     */
-    public String getNombreAutor() {
-        return nombreAutor;
-    }
-
-    /**
-     * MODIFICADOR
-     * @param nombreAutor 
-     */
-    public void setNombreAutor(String nombreAutor) {
-        this.nombreAutor = nombreAutor;
-    }
-
-    /**
-     * SELECTOR
-     * @return  String
-     */
-    public String getFechaCreacion() {
-        return FechaCreacion;
-    }
-
-    /**
-     * MODIFICADOR
-     * @param FechaCreacion 
-     */
-    public void setFechaCreacion(String FechaCreacion) {
-        this.FechaCreacion = FechaCreacion;
-    }
 
     
     /**
@@ -194,6 +137,6 @@ public class ZonasDeTrabajo {
 
     @Override
     public String toString() {
-        return "ZonasDeTrabajo[" + "nombreRep= " + nombreRep + ", nombreAutor= " + nombreAutor + ", FechaCreacion= " + FechaCreacion + ",\n workspace" + workspace + ",\n index" + index + ",\n localRepository" + localRepository + ",\n remoteRepository" + remoteRepository + ']';
+        return "ZonasDeTrabajo[" + ",\n workspace" + workspace + ",\n index" + index + ",\n localRepository" + localRepository + ",\n remoteRepository" + remoteRepository + ']';
     }
 }

@@ -11,6 +11,7 @@ atributos: Archivos_Index (lista de tipo ArrayList<ArchTextoPlano>)
 metodos incorporados: 
 
 - EliminarArchRep
+- toString
 
 
 

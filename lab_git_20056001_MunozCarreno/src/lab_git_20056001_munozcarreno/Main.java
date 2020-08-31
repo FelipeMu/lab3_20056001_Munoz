@@ -53,7 +53,10 @@ zona remote repository:
 
 
 
-
+/**
+ * 
+ * @author CLundstedt
+ */
 public class Main {
 
     public static void main(String[] args) {
@@ -65,18 +68,18 @@ public class Main {
         String autor;
        //se procede a ingresar el nombre del nuevo repositorio junto con el 
        //nombre del autor
-       System.out.println("###SIMULACION DE GIT###");
-       System.out.printf("(*) Ingrese el nombre del repositorio: ");
-       nombreRep = S.nextLine();
-       System.out.println();
-       System.out.printf("(*) Ingrese nombre del autor: ");
-       autor = S.nextLine();
+       
+       //SE INICIALIZA EL REPOSITORIO
+       Repositorio repositorio = Git.gitInit();
+       
+       
+
+       System.out.println(repositorio.toString());
        System.out.println();
        
-       //SE HACE USO DEL METODO gitInit()
-       ZonasDeTrabajo Zonas = Git.gitInit(nombreRep,autor);
-       System.out.println(Zonas.toString());
-       System.out.println();
+       
+       //SE PROCEDE A OBTENER LA ZONA DE TRABAJO
+       ZonasDeTrabajo Zonas = repositorio.getZonas();
        
        
        //Se crea una lista tipo String
@@ -190,7 +193,7 @@ public class Main {
                     break;   
                 // STATUS
                 case 5:
-                    Git.gitStatus(Zonas);
+                    Git.gitStatus(repositorio,Zonas);
                     break;
                 // LOG
                 case 6:

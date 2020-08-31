@@ -31,7 +31,6 @@ metodos incorporados:
 - gitStatus
 - gitLog
 
-
 */
 public class Git {
     
@@ -47,18 +46,29 @@ public class Git {
     //MÉTODOS   
     
     /**
-     * CONSTRUCTOR INICIAL
-     * @param nombreRep
-     * @param autor
-     * @return ZonasDeTrabajo 
+     * 
+     * @return Repositorio
      */
     // descripcion metodo: la finalidad del metodo es inicializar el repositorio,
     // generando el nombre del repositorio, el autor, la fecha de creacion y las
     // 4 zonas de trabajo inicializadas.
-    public static ZonasDeTrabajo gitInit(String nombreRep, String autor){
+    public static Repositorio gitInit(){
+       Scanner S = new Scanner(System.in); 
+       String nombreRep;
+       String autor;
         
-        ZonasDeTrabajo NuevasZonas = new ZonasDeTrabajo(nombreRep,autor);
-        return NuevasZonas;
+       System.out.println("###SIMULACION DE GIT###");
+       System.out.printf("(*) Ingrese el nombre del repositorio: ");
+       nombreRep = S.nextLine();
+       System.out.println();
+       System.out.printf("(*) Ingrese nombre del autor: ");
+       autor = S.nextLine();
+       System.out.println();
+       
+       
+       //CREACION DE REPOSITORIO
+       Repositorio repositorio = new Repositorio(nombreRep,autor);
+       return repositorio;
     }
       
     
@@ -383,15 +393,15 @@ public class Git {
     // cantidad de archivos almacenados en workspace e index, la cantidad de commit ubicados
     // en la zona local repository y informar si la zona remote repository cuenta con los ultimos
     // cambios generados por el usuario.
-    public static void gitStatus(ZonasDeTrabajo Zonas){
+    public static void gitStatus(Repositorio repositorio,ZonasDeTrabajo Zonas){
         
         //SE PROCEDE A MOSTRAR EL NOMBRE DEL REPOSITORIO Y SU AUTOR
         System.out.println("###REPOSITORIO ACTUAL###\n");
         
         //SE MUESTRA EL NOMBRE DEL REPOSITOIO
-        System.out.printf("Nombre repositorio: %s \n",Zonas.getNombreRep());
+        System.out.printf("Nombre repositorio: %s \n",repositorio.getNombre_repositorio());
         //SE MUESTRA EL AUTOR DEL REPOSITORIO
-        System.out.printf("Nombre autor: %s \n",Zonas.getNombreAutor());
+        System.out.printf("Nombre autor: %s \n",repositorio.getAutor());
         
         //AHORA DE DEBE OBTENER LA CANTIDAD DE ARCHIVOS QUE POSEE WORKSPACE E
         //INDEX Y LA CANTIDAD DE COMMIT EN LOCAL REPOSITORY

@@ -12,6 +12,7 @@ atributos: CommitsEnRemote (lista de tipo ArrayList<Commit>)
 metodos incorporados: 
 
 - ObtenerArchivosDeRemote
+- toString
 
 
 */
