@@ -47,7 +47,17 @@ zona remote repository:
 */
 
 
+/*
 
+descripcion clase: Clase principal encargada de mostrar el menu de interaccion
+
+atributos: -
+
+
+metodos incorporados: -
+
+
+*/
 
 
 
@@ -125,6 +135,10 @@ public class Main {
             boolean permitir;
 
            
+            //se obtiene la zona de trabajo del repositorio
+            
+            ZonasDeTrabajo zonas = repositorio.getZonas();
+            
             
             //SE PROCEDE A REVISAR LA OPCIÓN ESCOGIDA A TRAVÉS DE UN SWITCH
             switch(opcion){
@@ -133,9 +147,9 @@ public class Main {
                     permitir = MetodosExtras.ComandoPermitido(COMANDOS,"Add->");
                     if(permitir){
                         COMANDOS.add("Add->");
-                        ZonasDeTrabajo ZonasNueva1 = Git.gitAdd(Zonas);
+                        zonas.gitAdd(zonas);
 			System.out.println();
-                        System.out.println(ZonasNueva1.toString());
+                        System.out.println(zonas.toString());
                         System.out.println();
                         //MetodosExtras.mostrarComandos(COMANDOS);
                     }
@@ -150,9 +164,9 @@ public class Main {
                     permitir = MetodosExtras.ComandoPermitido(COMANDOS,"Commit->");
                     if(permitir){
                         COMANDOS.add("Commit->");
-                        ZonasDeTrabajo ZonasNueva2 = Git.gitCommit(Zonas);
+                        zonas.gitCommit(zonas);
 			System.out.println();
-                        System.out.println(ZonasNueva2.toString());
+                        System.out.println(zonas.toString());
                         System.out.println();
                         //MetodosExtras.mostrarComandos(COMANDOS);
                     }
@@ -165,9 +179,9 @@ public class Main {
                     permitir = MetodosExtras.ComandoPermitido(COMANDOS,"Pull->");
                     if(permitir){
                         COMANDOS.add("Pull->");
-                        ZonasDeTrabajo ZonasNueva3 = Git.gitPull(Zonas);
+                        zonas.gitPull(zonas);
 			System.out.println();
-                        System.out.println(ZonasNueva3.toString());
+                        System.out.println(zonas.toString());
                         System.out.println();
                         //MetodosExtras.mostrarComandos(COMANDOS);
                     }
@@ -180,9 +194,9 @@ public class Main {
                     permitir = MetodosExtras.ComandoPermitido(COMANDOS,"Push->");
                     if(permitir){
                         COMANDOS.add("Push->");
-                        ZonasDeTrabajo ZonasNueva4 = Git.gitPush(Zonas);
+                        zonas.gitPush(zonas);
 			System.out.println();
-                        System.out.println(ZonasNueva4.toString());
+                        System.out.println(zonas.toString());
                         System.out.println();
                         //MetodosExtras.mostrarComandos(COMANDOS);
                     }
@@ -193,20 +207,20 @@ public class Main {
                     break;   
                 // STATUS
                 case 5:
-                    Git.gitStatus(repositorio,Zonas);
+                    zonas.gitStatus(repositorio,Zonas);
                     break;
                 // LOG
                 case 6:
-                    Git.gitLog(Zonas);
+                    zonas.gitLog(Zonas);
                     break;
                 // INGRESAR ARCHIVOS A WORKSPACE
                 case 7:
                     permitir = MetodosExtras.ComandoPermitido(COMANDOS,"CargarArchivosWorkspace->");
                     if(permitir){
                         COMANDOS.add("CargarArchivosWorkspace->");
-                        ZonasDeTrabajo ZonasNueva7 = Git.AgregarArchivo(Zonas);
+                        zonas.AgregarArchivo(zonas);
 			System.out.println();
-                        System.out.println(ZonasNueva7.toString());
+                        System.out.println(zonas.toString());
                         System.out.println();
                         //MetodosExtras.mostrarComandos(COMANDOS);
                     }

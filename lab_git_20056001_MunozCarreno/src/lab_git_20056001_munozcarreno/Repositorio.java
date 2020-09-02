@@ -13,7 +13,9 @@ autor (autor del repositorio)
 Zonas (objeto que corresponde al tipo de clase ZonasDeTrabajo)
 
 
-metodos incorporados: sin metodos.
+metodos incorporados: 
+
+- toString
 
 
 */
