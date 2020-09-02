@@ -86,11 +86,7 @@ public class Main {
 
        System.out.println(repositorio.toString());
        System.out.println();
-       
-       
-       //SE PROCEDE A OBTENER LA ZONA DE TRABAJO
-       ZonasDeTrabajo Zonas = repositorio.getZonas();
-       
+        
        
        //Se crea una lista tipo String
        ArrayList<String> COMANDOS = new ArrayList<>();
@@ -207,11 +203,11 @@ public class Main {
                     break;   
                 // STATUS
                 case 5:
-                    zonas.gitStatus(repositorio,Zonas);
+                    zonas.gitStatus(repositorio,zonas);
                     break;
                 // LOG
                 case 6:
-                    zonas.gitLog(Zonas);
+                    zonas.gitLog(zonas);
                     break;
                 // INGRESAR ARCHIVOS A WORKSPACE
                 case 7:
